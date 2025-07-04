@@ -1,0 +1,72 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 60vh;
+  max-height: 600px;
+}
+
+/* Slider container */
+.hero__slider {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Each slide */
+.hero__slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Image fills slide */
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Caption */
+.hero__caption {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+  white-space: nowrap;
+}
+
+/* Arrows */
+.hero__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+.hero__arrow--left { left: 1rem; }
+.hero__arrow--right { right: 1rem; }
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .hero {
+    height: 40vh;
+    max-height: 300px;
+  }
+  .hero__caption {
+    font-size: 1.25rem;
+    bottom: 10%;
+  }
+  .hero__arrow {
+    font-size: 1.5rem;
+    padding: 0.3rem;
+  }
+}

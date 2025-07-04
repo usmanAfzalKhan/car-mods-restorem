@@ -1,0 +1,27 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.offers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 1rem;
+}
+
+.welcome {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+.welcome h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.welcome p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
