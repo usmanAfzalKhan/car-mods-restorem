@@ -5,22 +5,27 @@ import './Footer.css';
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__inner">
-        <div className="footer__left">
+    <footer className="site-footer">
+      <div className="footer-left">
+        <a href="#" aria-label="Facebook" className="footer-icon">
           <FaFacebookF />
+        </a>
+        <a href="#" aria-label="Instagram" className="footer-icon">
           <FaInstagram />
-        </div>
+        </a>
+      </div>
 
-        <div className="footer__center">
-          {/* <img src={logo} alt="Restor.em logo" className="footer__logo" /> */}
-          <span className="footer__title">Restor.em</span>
-        </div>
+      <div className="footer-center">
+        Restor.em
+      </div>
 
-        <div className="footer__right">
+      <div className="footer-right">
+        <a href="#" aria-label="TikTok" className="footer-icon">
           <SiTiktok />
-          <span className="footer__phone">+1 (234) 567-890</span>
-        </div>
+        </a>
+        <a href="tel:+1234567890" className="footer-phone">
+          +1 (234) 567-890
+        </a>
       </div>
     </footer>
   );

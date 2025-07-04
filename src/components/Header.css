@@ -5,6 +5,7 @@
   top: 0;
   z-index: 10;
 }
+
 .header__inner {
   display: flex;
   align-items: center;
@@ -13,22 +14,34 @@
   margin: 0 auto;
   padding: 0.75rem 1rem;
 }
+
 .header__brand {
   display: flex;
   align-items: center;
   text-decoration: none;
 }
+
+.header__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 .header__title {
   font-size: 1.25rem;
   font-weight: bold;
   color: #222;
 }
-/* Hamburger lines */
+
+/* Hamburger button */
 .header__burger {
   background: none;
   border: none;
   cursor: pointer;
+  display: block;
 }
+
+/* Burger lines */
 .burger,
 .burger::before,
 .burger::after {
@@ -39,26 +52,40 @@
   position: relative;
   transition: transform 0.2s ease;
 }
+
 .burger::before,
 .burger::after {
   content: '';
   position: absolute;
   left: 0;
 }
-.burger::before { top: -8px; }
-.burger::after  { top:  8px; }
+
+.burger::before {
+  top: -8px;
+}
+
+.burger::after {
+  top: 8px;
+}
+
 .burger--open {
   background-color: transparent;
 }
+
 .burger--open::before {
   transform: rotate(45deg) translate(5px, 5px);
 }
+
 .burger--open::after {
   transform: rotate(-45deg) translate(5px, -5px);
 }
+
+/* Mobile nav hidden by default */
 .header__nav {
   display: none;
 }
+
+/* Mobile nav shown when open */
 .header__nav--open {
   display: flex;
   flex-direction: column;
@@ -70,14 +97,18 @@
   border-radius: 4px;
   padding: 0.5rem 1rem;
 }
+
 .header__nav a {
   margin: 0.5rem 0;
   text-decoration: none;
   color: #333;
 }
-/* Desktop view */
+
+/* Desktop view: show nav, hide burger */
 @media (min-width: 768px) {
-  .header__burger { display: none; }
+  .header__burger {
+    display: none;
+  }
   .header__nav {
     display: flex !important;
     position: static;
