@@ -36,6 +36,7 @@ export default function Header() {
           <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
           <Link to="/reviews" onClick={() => setMenuOpen(false)}>Reviews</Link>
+          <Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
         </nav>
       </div>

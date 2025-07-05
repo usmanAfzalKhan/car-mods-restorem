@@ -28,7 +28,6 @@ function App() {
             <Route path="/services"     element={<ServicesPage />}       />
             {/* ← Here’s the new detail route: */}
             <Route path="/services/:id" element={<ServiceDetailPage />}  />
-
             <Route path="/reviews"      element={<ReviewsPage />}        />
             <Route path="/contact"      element={<ContactPage />}        />
             <Route path="/faq"          element={<FaqPage />}            />
