@@ -1,70 +1,68 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from 'swiper/modules';
-import "swiper/css";
-import "swiper/css/navigation";
 import "./OffersRow.css";
+import bundleImg from '../assets/images/offer-bundle-save.png';
 
-const offers = [
-  { id: 1, title: "Paint Protection Film (PPF)", subtitle: "Invisible shield", desc: "Self-healing, ultra-clear film preserves your paint from chips, scratches, and road debris. Protects resale value while staying nearly invisible." },
-  { id: 2, title: "Performance ECU Tuning", subtitle: "Unleash horsepower", desc: "Dyno-proven remapping for maximum gains. Boost power, throttle response, and even fuel economy—customized to your driving style." },
-  { id: 3, title: "Custom Wheels & Suspension", subtitle: "Stand out", desc: "Premium alloy wheels and adjustable suspension packages. Perfect fitment, aggressive looks, and improved ride—all tailored for your vehicle." },
-  { id: 4, title: "Blindspot Monitor", subtitle: "Modern safety", desc: "Add factory-style blindspot monitoring with integrated warning indicators for safer lane changes." },
-  { id: 5, title: "Starry Headliner", subtitle: "Rolls Royce vibes", desc: "Custom fiber optic headliner gives your ride a starlit ceiling effect—fully dimmable and color changing." }
-];
+const offer = {
+  id: 1,
+  title: "Bundle & Save",
+  subtitle: "Upgrade more, pay less",
+  desc: "Get exclusive discounts when you book two or more services together—perfect for total car transformations.",
+  image: bundleImg,
+};
 
 export default function OffersRow() {
-  const [expandedId, setExpandedId] = useState(null);
+  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
 
-  const handleExpand = (id) => setExpandedId(expandedId === id ? null : id);
-  const handleBook = (title) => {
-    navigate("/contact", { state: { service: title } });
+  const handleExpand = () => setExpanded((prev) => !prev);
+  const handleBook = () => {
+    navigate("/contact", { state: { service: offer.title } });
   };
 
   return (
     <section className="offers-row-restorem">
-      <h2 className="offers-section-heading">Our Featured Upgrades & Offers</h2>
-      <Swiper
-        modules={[Navigation]}
-        navigation
-        loop={true}  // Enables infinite looping
-        spaceBetween={24}
-        slidesPerView={1}
-        breakpoints={{
-          1200: { slidesPerView: 3 },
-          800:  { slidesPerView: 2 },
-          0:    { slidesPerView: 1 }
-        }}
-        className="offers-swiper-restorem"
-        style={{ paddingBottom: 24 }}
-      >
-        {offers.map((offer) => (
-          <SwiperSlide key={offer.id}>
-            <div
-              className={`offer-card-restorem${expandedId === offer.id ? " expanded" : ""}`}
-              onClick={() => handleExpand(offer.id)}
-              style={{ cursor: "pointer" }}
+      <h2 className="offers-section-heading">Special Offer</h2>
+      <div className="offers-row-center">
+        <div
+          className={`offer-card-restorem${expanded ? " expanded" : ""}`}
+          onClick={handleExpand}
+          tabIndex={0}
+          role="button"
+        >
+          <div className="offer-image-wrap">
+            <img
+              src={offer.image}
+              alt={offer.title}
+              className="offer-image-restorem"
+              draggable={false}
+            />
+          </div>
+          <div className="offer-title-area">
+            <div className="offer-title-restorem">{offer.title}</div>
+            <div className="offer-subtitle-restorem">{offer.subtitle}</div>
+          </div>
+          <div
+            className={`offer-details-restorem${expanded ? " expanded" : ""}`}
+            onClick={e => e.stopPropagation()}
+            style={{
+              maxHeight: expanded ? '250px' : '0',
+              opacity: expanded ? 1 : 0,
+              pointerEvents: expanded ? 'auto' : 'none',
+              transition: 'max-height 0.25s cubic-bezier(.3,.85,.53,1), opacity 0.18s'
+            }}
+          >
+            <div className="offer-desc-restorem">{offer.desc}</div>
+            <button
+              className="offer-book-btn-restorem"
+              onClick={e => { e.stopPropagation(); handleBook(); }}
+              tabIndex={expanded ? 0 : -1}
             >
-              <div className="offer-ad-space-restorem" />
-              <div className="offer-title-restorem">{offer.title}</div>
-              <div className="offer-subtitle-restorem">{offer.subtitle}</div>
-              {expandedId === offer.id && (
-                <div className="offer-details-restorem" onClick={e => e.stopPropagation()}>
-                  <div className="offer-desc-restorem">{offer.desc}</div>
-                  <button
-                    className="offer-book-btn-restorem"
-                    onClick={e => { e.stopPropagation(); handleBook(offer.title); }}
-                  >
-                    Book Now
-                  </button>
-                </div>
-              )}
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
