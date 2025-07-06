@@ -49,13 +49,16 @@
   fill: currentColor;
   display: block;
 }
+
+/* Updated hover to match nav buttons exactly */
 .footer__social a:hover,
 .footer__social a:focus {
-  background: #ffe082;
-  color: #191c1f;
+  background: #232735;
+  color: #181b20;
   border-color: #ffe082;
-  box-shadow: 0 2px 18px #ffe08255;
-  transform: scale(1.07);
+  box-shadow: 0 2px 14px #232735cc;
+  outline: none;
+  transform: none;
 }
 
 .footer__tagline {
@@ -83,14 +86,18 @@
   letter-spacing: 0.02em;
   box-shadow: 0 1.5px 10px #2327351a;
   text-decoration: none;
-  transition: background 0.17s, color 0.15s, border 0.15s;
+  transition: background 0.16s, color 0.16s, border 0.14s, box-shadow 0.16s, transform 0.15s;
   text-align: center;
 }
+
 .footer__phone:hover,
 .footer__phone:focus {
-  background: #ffe082;
+  background: #232735;
   color: #181b20;
-  border: 2px solid #181b20;
+  border-color: #ffe082;
+  box-shadow: 0 2px 14px #232735cc;
+  outline: none;
+  transform: none;
 }
 
 .footer__copyright {
