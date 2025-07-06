@@ -10,8 +10,7 @@ export default function HomePage() {
       <section className="homepage-welcome">
         <h1>Welcome to Restor.em</h1>
         <p>
-          This is your homepage placeholder—here will go the hero slider,
-          offers, and welcome message.
+          Elevate your driving experience with Restor.em—your destination for high-quality automotive upgrades, modern tech installs, and premium detailing. From head-turning customizations to advanced safety and audio features, we treat every vehicle as a passion project. Discover how the right enhancements can make your car truly yours—crafted, protected, and ready to impress.
         </p>
       </section>
       <OffersRow />

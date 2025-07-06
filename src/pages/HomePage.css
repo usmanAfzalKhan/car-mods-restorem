@@ -15,13 +15,13 @@
 .homepage-welcome h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #222;
+  color: #e3c776; /* your brand accent */
 }
 
 .homepage-welcome p {
   font-size: 1.125rem;
   line-height: 1.6;
-  color: #555;
+  color: #f4f4f4; /* off-white for dark bg */
 }
 
 /* make sure it’s responsive */

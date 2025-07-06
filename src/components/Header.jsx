@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import logoImg from '../assets/images/logo.png'; // Update path if needed
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Placeholder logo URL
-  const logoUrl = 'https://via.placeholder.com/100?text=Logo';
 
   return (
     <header className="header">
@@ -14,7 +12,7 @@ export default function Header() {
         {/* Logo + Site Name */}
         <Link to="/" className="header__brand">
           <img
-            src={logoUrl}
+            src={logoImg}
             alt="Restor.em logo"
             className="header__logo"
           />
@@ -41,5 +39,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-);
+  );
 }
