@@ -1,167 +1,193 @@
-/* AboutPage.css */
-
-.about-page {
-  padding: 2.5rem 1rem;
-  max-width: 800px;
+/* ===== Core Page Layout ===== */
+.aboutpage-root {
+  width: 100%;
+  max-width: 420px;
   margin: 0 auto;
-  color: #f4eede;
+  padding: 1.4rem 0.7rem 2.2rem 0.7rem;
+  background: transparent;
+  box-sizing: border-box;
   text-align: center;
 }
 
-.about-page h1 {
-  font-size: 2.25rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
+.aboutpage-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.01em;
   color: #ffe082;
 }
-
-.about-page .intro {
-  font-size: 1.125rem;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
-  max-width: 650px;
+.aboutpage-sectiontitle {
+  font-size: 1.15rem;
+  margin: 2rem 0 0.6rem 0;
+  font-weight: 600;
+  color: #ffe082;
 }
-
-.features-list {
-  list-style: disc inside;
-  margin: 0 auto 2.5rem;
-  max-width: 400px;
-  text-align: left;
-}
-
-.features-list li {
-  margin-bottom: 0.75rem;
+.aboutpage-intro,
+.aboutpage-bio {
   font-size: 1rem;
+  color: #e8e8e8;
+  line-height: 1.6;
+  margin: 0 auto 1.2rem auto;
+  max-width: 370px;
+  word-break: break-word;
+}
+.aboutpage-features {
+  list-style: disc inside;
+  text-align: left;
+  padding: 0 0 0 1.1rem;
+  margin: 0 auto 1.6rem auto;
+  max-width: 350px;
+  color: #d6c281;
+  font-size: 0.99rem;
+}
+.aboutpage-features li {
+  margin-bottom: 0.55rem;
   line-height: 1.5;
-  color: #e9eaf0;
 }
-
-.about-page h2 {
-  font-size: 1.75rem;
-  margin: 2rem 0 1rem;
-  line-height: 1.3;
-  color: #ffe082;
-}
-
-/* Founder photo styling */
-.kazim-photo-container {
+.aboutpage-photo-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
 }
-
-.kazim-photo {
-  width: 160px;
-  height: 160px;
+.aboutpage-photo {
+  width: 94px;
+  height: 94px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #ffe082;
+  background: #191c1f;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.14);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.18s, opacity 0.18s, border-color 0.18s;
 }
-
-.kazim-photo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px #ffe08233;
+.aboutpage-photo:hover {
+  transform: scale(1.07);
+  opacity: 0.88;
+  border-color: #ffd744;
 }
-
-.about-page .bio {
-  font-size: 1rem;
-  max-width: 650px;
-  margin: 0 auto 3rem;
-  line-height: 1.6;
-  color: #e9eaf0;
-}
-
-.gallery-preview {
+.aboutpage-gallery {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  min-height: 32px;
 }
 
-/* Modal overlay and content */
-.modal-overlay {
+/* ===== Modal Styles ===== */
+.aboutpage-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(24, 24, 24, 0.9);
+  inset: 0;
+  background: rgba(16,16,24,0.93);
+  z-index: 1500;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  animation: aboutpage-fadein 0.19s;
+  cursor: zoom-out;
 }
-
-.modal-content {
+@keyframes aboutpage-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.aboutpage-modal-content {
   position: relative;
-  max-width: 90%;
-  max-height: 90%;
-  padding: 1rem;
-  overflow: visible; /* allow close button to sit outside */
+  background: #191c1f;
+  border-radius: 11px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.78);
+  max-width: 96vw;
+  width: 100%;
+  max-height: 92vh;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  cursor: default;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.aboutpage-modal-imgwrap {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* For touch devices: allows scroll if image is large */
+}
+.aboutpage-modal-img {
+  display: block;
+  max-width: 92vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 9px;
+  background: #181b20;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: auto;
+  margin: 0 auto;
 }
 
-/* Refined close button */
-.modal-close {
+/* ===== Modal Close Button ===== */
+.aboutpage-modal-close {
   position: absolute;
-  top: -12px;
-  right: -12px;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  background: #ffe082;
+  top: 13px;
+  right: 13px;
+  z-index: 2;
+  width: 2.3rem;
+  height: 2.3rem;
+  background: rgba(35,35,44,0.79);
+  color: #ffe082;
   border: none;
   border-radius: 50%;
-  font-size: 1.2rem;
-  line-height: 36px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 2.3rem;
   text-align: center;
-  color: #181b20;
   cursor: pointer;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-  transition: background 0.2s, transform 0.2s;
-  z-index: 2001;
+  transition: background 0.19s, color 0.18s, transform 0.12s;
+  box-shadow: 0 1.5px 7px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.aboutpage-modal-close:hover,
+.aboutpage-modal-close:focus {
+  background: #ffe082;
+  color: #23252c;
+  outline: none;
+  transform: scale(1.11);
 }
 
-.modal-close:hover,
-.modal-close:focus {
-  background: #fff;
-  transform: scale(1.1);
-}
-
-/* Modal image */
-.modal-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px #0008;
-}
-
-/* Responsive tweaks */
-@media (max-width: 700px) {
-  .about-page {
-    padding: 1.8rem 0.8rem;
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .aboutpage-root {
+    max-width: 100vw;
+    padding: 1rem 0.13rem 1.1rem 0.13rem;
   }
-  .about-page h1 {
-    font-size: 2rem;
-  }
-  .about-page h2 {
-    font-size: 1.5rem;
-  }
-  .kazim-photo {
-    width: 120px;
-    height: 120px;
+  .aboutpage-title { font-size: 1.21rem; }
+  .aboutpage-sectiontitle { font-size: 1rem; }
+  .aboutpage-intro,
+  .aboutpage-bio { font-size: 0.97rem; }
+  .aboutpage-photo { width: 65px; height: 65px; }
+  .aboutpage-modal-img { max-width: 97vw; max-height: 60vh; border-radius: 7px; }
+  .aboutpage-modal-content { border-radius: 7px; }
+  .aboutpage-modal-close {
+    width: 1.65rem;
+    height: 1.65rem;
+    font-size: 1.1rem;
+    top: 7px;
+    right: 7px;
+    line-height: 1.7rem;
   }
 }
 
-@media (max-width: 500px) {
-  .modal-close {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-    line-height: 32px;
-    top: -10px;
-    right: -10px;
-  }
+/* Prevent background scroll when modal open (universal for all browsers) */
+body:has(.aboutpage-modal-overlay) {
+  overflow: hidden !important;
 }

@@ -1,49 +1,80 @@
-import React, { useState } from 'react';
-import './AboutPage.css';
-import founderImg from '../assets/images/founder.jpeg';
+import React, { useState } from "react";
+import "./AboutPage.css";
+import founderImg from "../assets/images/founder.jpeg";
 
 export default function AboutPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
+  // Prevent scroll on body when modal open
+  React.useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modalOpen]);
+
   return (
-    <div className="about-page">
-      <h1>About Restor.em</h1>
-      <p className="intro">
-        At Restor.em, we specialize in comprehensive automotive restorations and customizations—delivering premium service tailored to your needs. With industry-leading warranties, transparent pricing, and fast turnaround, we ensure every vehicle leaves our shop performing and looking its best.
+    <div className="aboutpage-root">
+      <h1 className="aboutpage-title">About Restor.em</h1>
+      <p className="aboutpage-intro">
+        At Restor.em, we elevate automotive craftsmanship with meticulous restorations and bespoke modifications. Our expert team leverages cutting-edge techniques and premium materials to transform every vehicle into a personalized masterpiece. From initial consultation through final inspection, we maintain the highest standards of quality—ensuring your car performs flawlessly and turns heads wherever you drive.
       </p>
 
-      <ul className="features-list">
-        <li>Personalized service tailored to your needs</li>
-        <li>Premium parts and industry-leading warranties</li>
-        <li>Transparent pricing—no hidden fees</li>
-        <li>Fast turnaround &amp; friendly support</li>
+      <ul className="aboutpage-features">
+        <li>Tailored restoration & customization packages</li>
+        <li>High-grade materials and advanced techniques</li>
+        <li>Transparent pricing—no hidden costs</li>
+        <li>Swift turnaround with dedicated support</li>
       </ul>
 
-      <h2>Meet Kazim</h2>
-      <div className="kazim-photo-container">
+      <h2 className="aboutpage-sectiontitle">Meet Kazim</h2>
+      <div className="aboutpage-photo-wrap">
         <img
           src={founderImg}
           alt="Kazim, founder of Restor.em"
-          className="kazim-photo"
+          className="aboutpage-photo"
           onClick={() => setModalOpen(true)}
         />
       </div>
-      <p className="bio">
-        Kazim, the founder and lead technician of Restor.em, brings over 6 years plus of hands-on expertise in automotive customization. His precision-driven approach and deep understanding of vehicle systems ensure every modification—from advanced stereo installations to precision headlight restorations—is executed flawlessly. Under his leadership, Restor.em has earned a reputation for quality, reliability, and uncompromising attention to detail.
+      <p className="aboutpage-bio">
+        Kazim, our founder and master technician, brings over six years of hands-on expertise in automotive enhancement. His precision-driven philosophy and deep technical mastery ensure every project—from ambient LED integrations to full paint-protection film applications—is executed to perfection. Under his leadership, Restor.em has earned acclaim for innovation, reliability, and uncompromising attention to detail.
       </p>
 
-      <h2>Gallery Preview</h2>
-      <div className="gallery-preview">
-        {/* Drop your preview images here */}
+      <h2 className="aboutpage-sectiontitle">Gallery Preview</h2>
+      <div className="aboutpage-gallery">
+        {/* Gallery thumbnails here */}
       </div>
 
       {modalOpen && (
-        <div className="modal-overlay" onClick={() => setModalOpen(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setModalOpen(false)}>
-              ×
+        <div
+          className="aboutpage-modal-overlay"
+          onClick={() => setModalOpen(false)}
+        >
+          <div
+            className="aboutpage-modal-content"
+            onClick={(e) => e.stopPropagation()}
+            tabIndex={-1}
+          >
+            <button
+              className="aboutpage-modal-close"
+              onClick={() => setModalOpen(false)}
+              aria-label="Close"
+              type="button"
+            >
+              &times;
             </button>
-            <img src={founderImg} alt="Kazim full" className="modal-image"/>
+            <div className="aboutpage-modal-imgwrap">
+              <img
+                src={founderImg}
+                alt="Kazim full"
+                className="aboutpage-modal-img"
+                draggable="false"
+              />
+            </div>
           </div>
         </div>
       )}
