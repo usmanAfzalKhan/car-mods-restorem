@@ -33,7 +33,7 @@ export default function Footer() {
           </a>
         </div>
         <div className="footer__tagline">
-          Driven by passion. Crafted for your car.
+          Engineered for performance. Built for you.
         </div>
         <a href="tel:+1234567890" className="footer__phone">
           +1 (234) 567-890
