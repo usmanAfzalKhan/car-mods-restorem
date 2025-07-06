@@ -27,8 +27,8 @@
 }
 
 .header__logo {
-  width: 110px !important;   /* BIGGER logo on desktop */
-  height: 110px !important;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   object-fit: contain;
   box-shadow: none;
@@ -112,6 +112,7 @@
 .header__nav {
   display: none;
 }
+
 .header__nav--open {
   display: flex;
   flex-direction: column;
@@ -124,30 +125,33 @@
   border-radius: 9px;
   padding: 0.7rem 1rem;
   box-shadow: 0 8px 32px #13162444;
+  gap: 0.5rem; /* spacing between links */
 }
+
 .header__nav a {
   background: #232735;
   color: #fff;
   font-size: 1.08rem;
   font-family: 'Segoe UI', Arial, sans-serif;
   border-radius: 17px;
-  padding: 0.48rem 1.35rem;
-  margin: 0 0.22rem;
+  padding: 0.6rem 1.5rem;
   box-shadow: 0 1.5px 8px #13141810;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   border: none;
-  display: inline-block;
+  display: block;
   text-align: center;
   transition: color 0.15s, background 0.18s, box-shadow 0.15s;
 }
+
 .header__nav a:hover,
 .header__nav a:focus {
   background: #232735;
   color: #181b20;
-  box-shadow: 0 2px 14px #23273544;
+  box-shadow: 0 2px 14px #232735cc;
   outline: none;
 }
+
 .header__nav a:active {
   color: #ffe082;
 }
@@ -178,16 +182,16 @@
 /* Responsive logo + brand text for mobile */
 @media (max-width: 700px) {
   .header__logo {
-    width: 90px !important;  /* Bigger on smaller screens too */
-    height: 90px !important;
+    width: 58px;
+    height: 58px;
   }
   .header__brand-main { font-size: 1.19rem; }
   .header__brand-dot { font-size: 0.89rem; }
 }
 @media (max-width: 500px) {
   .header__logo {
-    width: 70px !important;  /* Large but fits well on very small devices */
-    height: 70px !important;
+    width: 48px;
+    height: 48px;
   }
   .header__brand-main { font-size: 0.98rem; }
   .header__brand-dot { font-size: 0.68rem; }
