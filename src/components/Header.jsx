@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import logoImg from '../assets/images/logo.png'; // Update path if needed
+import logoImg from '../assets/images/logo.png';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Header() {
           <span className="header__title">Restor.em</span>
         </Link>
 
-        {/* Hamburger */}
+        {/* Hamburger (mobile only) */}
         <button
           className="header__burger"
           onClick={() => setMenuOpen(o => !o)}
@@ -28,8 +28,8 @@ export default function Header() {
           <div className={`burger ${menuOpen ? 'burger--open' : ''}`} />
         </button>
 
-        {/* Nav */}
-        <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`}>
+        {/* Nav links */}
+        <nav className={`header__nav${menuOpen ? ' header__nav--open' : ''}`}>
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>

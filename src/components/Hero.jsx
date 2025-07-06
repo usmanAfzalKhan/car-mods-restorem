@@ -16,7 +16,6 @@ const slides = [
   {
     id: 0,
     imageUrl: welcomeImg,
-    // Logo, statement, and button will show; heading/subtitle/button not used
     statement: 'Redefine your ride with trusted car mods & upgrades.'
   },
   {
@@ -82,25 +81,46 @@ export default function Hero() {
   const navigate = useNavigate();
   const len = slides.length;
 
+  // Mobile swipe optimization (touch support)
+  let touchStartX = null;
+  let touchEndX = null;
+  const minSwipe = 35;
+  const onTouchStart = e => { touchStartX = e.touches[0].clientX; };
+  const onTouchMove = e => { touchEndX = e.touches[0].clientX; };
+  const onTouchEnd = () => {
+    if (touchStartX !== null && touchEndX !== null) {
+      const dx = touchEndX - touchStartX;
+      if (dx > minSwipe) prev();
+      else if (dx < -minSwipe) next();
+    }
+    touchStartX = null;
+    touchEndX = null;
+  };
+
   const next = () => setCurrent(current === len - 1 ? 0 : current + 1);
   const prev = () => setCurrent(current === 0 ? len - 1 : current - 1);
 
   return (
-    <section className="hero">
+    <section
+      className="hero"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       <button className="hero__arrow hero__arrow--left" onClick={prev} aria-label="Previous slide">‹</button>
       <div className="hero__slider" style={{ transform: `translateX(-${current * 100}%)` }}>
-        {slides.map((slide, idx) => (
+        {slides.map((slide) => (
           <div className="hero__slide" key={slide.id}>
             <img src={slide.imageUrl} alt={slide.title || "Restor.em"} className="hero__image" draggable={false} />
 
             {slide.id === 0 ? (
-              // Welcome hero
               <div className="hero__welcome-content">
                 <img src={logo} alt="Restor.em logo" className="hero__logo-centered" />
                 <div className="hero__welcome-statement">{slide.statement}</div>
                 <button
                   className="hero__button hero__button--center"
                   onClick={() => navigate('/services')}
+                  tabIndex={0}
                 >
                   View Services
                 </button>
@@ -114,6 +134,7 @@ export default function Hero() {
                   <button
                     className="hero__button"
                     onClick={() => navigate(slide.button.path)}
+                    tabIndex={0}
                   >
                     {slide.button.label}
                   </button>

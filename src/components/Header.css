@@ -1,112 +1,136 @@
 .header {
-  background: white;
-  border-bottom: 1px solid #e2e2e2;
+  background: #181b20;
+  border-bottom: 1.5px solid #23242b;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 50;
+  box-shadow: 0 2px 18px #0003;
 }
 
 .header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 1.2rem 0.65rem 1.2rem;
 }
 
 .header__brand {
   display: flex;
   align-items: center;
   text-decoration: none;
+  margin-right: auto;
+  gap: 0.7rem;
 }
 
 .header__logo {
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 0.5rem;
-  transition: transform 0.2s ease;
+  box-shadow: 0 1.5px 12px #15161828;
+  transition: transform 0.2s, box-shadow 0.16s;
 }
 
-/* Logo hover scale */
 .header__logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.07) rotate(-2deg);
+  box-shadow: 0 5px 20px #ffe08280;
 }
 
 .header__title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #222;
+  font-size: 1.23rem;
+  font-weight: 600;
+  color: #ffe082;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1.5px 8px #181b209c;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 
-/* Hamburger */
+/* Hamburger menu (mobile only) */
 .header__burger {
   background: none;
   border: none;
   cursor: pointer;
   display: block;
+  margin-left: 1.1rem;
+  padding: 5px 2px 4px 2px;
+  z-index: 200;
 }
 
 .burger,
 .burger::before,
 .burger::after {
-  width: 25px;
+  width: 24px;
   height: 3px;
-  background-color: #333;
+  background-color: #ffe082;
   display: block;
   position: relative;
-  transition: transform 0.2s ease;
+  border-radius: 2px;
+  transition: transform 0.22s, background 0.18s;
 }
-
 .burger::before,
 .burger::after {
   content: '';
   position: absolute;
   left: 0;
 }
+.burger::before { top: -7px; }
+.burger::after  { top: 7px; }
+.burger--open { background-color: transparent; }
+.burger--open::before { transform: rotate(45deg) translate(4px, 4px);}
+.burger--open::after  { transform: rotate(-45deg) translate(4px, -4px);}
 
-.burger::before { top: -8px; }
-.burger::after  { top: 8px; }
-
-.burger--open {
-  background-color: transparent;
-}
-
-.burger--open::before {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.burger--open::after {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Mobile nav hidden by default */
 .header__nav {
   display: none;
 }
 
-/* Mobile nav open */
+/* Mobile nav open dropdown */
 .header__nav--open {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 100%;
-  right: 1rem;
-  background: white;
-  border: 1px solid #e2e2e2;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
+  top: 105%;
+  right: 1.3rem;
+  min-width: 160px;
+  background: #191b22;
+  border: 1.5px solid #23242b;
+  border-radius: 9px;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  box-shadow: 0 8px 32px #13162444;
 }
 
 .header__nav a {
-  margin: 0.5rem 0;
+  background: #232735;
+  color: #fff;
+  font-size: 1.08rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  border-radius: 17px;
+  padding: 0.48rem 1.35rem;
+  margin: 0 0.22rem;
+  box-shadow: 0 1.5px 8px #13141810;
+  font-weight: 500;
   text-decoration: none;
-  color: #333;
+  border: none;
+  display: inline-block;
+  text-align: center;
+  transition: color 0.15s, background 0.18s, box-shadow 0.15s;
 }
 
-/* Desktop override */
+.header__nav a:hover,
+.header__nav a:focus {
+  background: #232735;
+  color: #111;      /* <-- High-contrast, super readable */
+  box-shadow: 0 2px 14px #23273544;
+  outline: none;
+}
+
+
+.header__nav a:active {
+  color: #181b20;
+}
+
+/* Desktop nav: row, subtle pill, right-aligned */
 @media (min-width: 768px) {
   .header__burger { display: none; }
   .header__nav {
@@ -116,6 +140,15 @@
     background: transparent;
     border: none;
     padding: 0;
+    margin-left: auto;
+    gap: 0.2rem;
+    align-items: center;
   }
-  .header__nav a { margin: 0 1rem; }
+  .header__nav a {
+    margin: 0 0.22rem;
+    font-size: 1.08rem;
+    padding: 0.48rem 1.35rem;
+    border-radius: 17px;
+    background: #232735;
+  }
 }

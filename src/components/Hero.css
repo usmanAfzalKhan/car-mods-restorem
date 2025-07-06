@@ -12,6 +12,7 @@
   display: flex;
   height: 100%;
   transition: transform 0.5s cubic-bezier(0.66, 0, 0.34, 1);
+  will-change: transform;
 }
 
 .hero__slide {
@@ -21,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: opacity, transform;
 }
 
 .hero__image {
@@ -32,7 +34,7 @@
   user-select: none;
 }
 
-/* --- Welcome Hero Content --- */
+/* Welcome Hero Content */
 .hero__welcome-content {
   position: absolute;
   left: 50%;
@@ -75,39 +77,43 @@
   padding: 0 0.5em;
 }
 
+/* Optimized Button Styles (matches nav!) */
+.hero__button,
 .hero__button--center {
-  display: block;
-  margin: 0 auto;
-  width: 215px;
-  max-width: 82vw;
-  font-size: 1.13rem;
-  font-weight: 700;
   background: rgba(32,34,43, 0.84);
   color: #ffe082;
+  font-weight: 600;
   border: 1.5px solid #ffe082;
   border-radius: 8px;
-  padding: 0.62em 1.55em;
+  font-size: 1rem;
+  padding: 0.52em 1.45em;
   box-shadow: 0 2px 12px #0008;
+  cursor: pointer;
+  transition:
+    color 0.16s,
+    background 0.17s,
+    border-color 0.16s,
+    box-shadow 0.13s;
+  margin-top: 0.65em;
   letter-spacing: 0.01em;
   text-shadow: 0 1px 7px #000c;
   outline: none;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    color 0.15s,
-    border-color 0.16s,
-    box-shadow 0.13s;
+  border-style: solid;
 }
 
+/* On hover/focus: only text color changes for readability, bg stays */
+.hero__button:hover,
+.hero__button:focus,
 .hero__button--center:hover,
 .hero__button--center:focus {
-  background: #ffe082;
+  background: rgba(32,34,43, 0.84);
   color: #181b20;
-  border-color: #181b20;
-  box-shadow: 0 3px 20px #ffe08266, 0 2px 9px #181b2015;
+  border-color: #ffe082;
+  box-shadow: 0 3px 20px #ffe08226, 0 2px 9px #181b2010;
+  outline: none;
 }
 
-/* --- Other Slides --- */
+/* Other Slides */
 .hero__logo-overlay {
   position: absolute;
   bottom: 3vw;
@@ -154,36 +160,6 @@
   color: #f8f7f0;
   margin: 0 0 1.0em 0;
   text-shadow: 0 1px 6px #000b;
-}
-
-/* --- Modern Button Style --- */
-.hero__button {
-  background: rgba(32,34,43, 0.84);
-  color: #ffe082;
-  font-weight: 600;
-  border: 1.5px solid #ffe082;
-  border-radius: 8px;
-  font-size: 1rem;
-  padding: 0.52em 1.45em;
-  box-shadow: 0 2px 12px #0008;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    color 0.15s,
-    border-color 0.16s,
-    box-shadow 0.13s;
-  margin-top: 0.65em;
-  letter-spacing: 0.01em;
-  text-shadow: 0 1px 7px #000c;
-  outline: none;
-}
-
-.hero__button:hover,
-.hero__button:focus {
-  background: #ffe082;
-  color: #181b20;
-  border-color: #181b20;
-  box-shadow: 0 3px 20px #ffe08266, 0 2px 9px #181b2015;
 }
 
 /* --- Arrows --- */
