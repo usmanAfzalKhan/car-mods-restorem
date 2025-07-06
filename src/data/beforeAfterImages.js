@@ -1,8 +1,26 @@
 // src/data/beforeAfterImages.js
-import bnf1 from '../assets/images/bnf1.jpeg';
-import bnf2 from '../assets/images/bnf2.jpeg';
-import bnf3 from '../assets/images/bnf3.jpeg';
-import bnf4 from '../assets/images/bnf4.jpeg';
-import bnf5 from '../assets/images/bnf5.jpeg';
 
-export default [bnf1, bnf2, bnf3, bnf4, bnf5];
+const beforeAfterImages = [
+  {
+    src: require('../assets/images/bnf1.jpeg'),
+    alt: 'Before & After 1',
+  },
+  {
+    src: require('../assets/images/bnf2.jpeg'),
+    alt: 'Before & After 2',
+  },
+  {
+    src: require('../assets/images/bnf3.jpeg'),
+    alt: 'Before & After 3',
+  },
+  {
+    src: require('../assets/images/bnf4.jpeg'),
+    alt: 'Before & After 4',
+  },
+  {
+    src: require('../assets/images/bnf5.jpeg'),
+    alt: 'Before & After 5',
+  },
+];
+
+export default beforeAfterImages;
