@@ -167,20 +167,31 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(14, 14, 17, 0.60);
+  background: transparent;
   border: none;
   color: #ffe082;
   font-size: 2.3rem;
   padding: 0.32em 0.6em;
-  border-radius: 12px;
-  box-shadow: 0 2px 16px #10101c32;
+  border-radius: 50%;
+  box-shadow: none;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.16s;
+  transition: color 0.18s;
+  outline: none;
 }
+
+.hero__arrow:hover,
+.hero__arrow:focus,
+.hero__arrow:active {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffe082;
+  box-shadow: none;
+}
+
 .hero__arrow--left { left: 2vw; }
 .hero__arrow--right { right: 2vw; }
-.hero__arrow:active { background: #181b20; }
 
 /* --- Slide indicators (dots) --- */
 .hero__indicators {
@@ -260,6 +271,10 @@
     width: 98%;
     padding: 0.62em 0;
     margin-top: 0.7em;
+  }
+  .hero__arrow {
+    font-size: 2rem;
+    padding: 0.24em 0.43em;
   }
 }
 @media (max-width: 500px) {
