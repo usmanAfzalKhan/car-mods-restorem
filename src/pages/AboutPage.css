@@ -1,288 +1,201 @@
 :root {
-  --gold-heading: #f7d681;
-  --about-text: #fcfbf7;
-  --about-muted: #b6ad97;
-  --about-dark-bg: #181b20;
+  --gold: #ffe082;
+  --gold-shadow: 0 2px 18px #ffe08225;
+  --bg-dark: #181b20;
+  --pill: #232735;
 }
 
-/* ===== General Layout ===== */
-.aboutpage-root {
-  width: 100%;
-  max-width: 980px;
+/* Headings: gold, bold, shadow */
+.section-gold {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 2.3rem;
+  text-align: center;
+  margin-bottom: 1.1rem;
+  text-shadow: var(--gold-shadow);
+}
+@media (max-width: 600px) {
+  .section-gold {
+    font-size: 1.38rem;
+  }
+}
+
+.about-page {
+  max-width: 940px;
   margin: 0 auto;
-  padding: 2.4rem 1.1rem 2.7rem 1.1rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  align-items: center;
-  background: none;
+  padding: 2rem 1rem;
+  color: #f7f7f7;
+  font-family: system-ui, sans-serif;
 }
 
-.aboutpage-section {
-  width: 100%;
-  margin: 0 auto 0.5rem auto;
-  padding: 0;
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.aboutpage-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--gold-heading);
-  text-align: center;
-  margin: 2.6rem 0 1.5rem 0;
-  letter-spacing: -0.01em;
-}
-
-.aboutpage-sectiontitle {
-  font-size: 2rem;
-  color: var(--gold-heading);
-  font-weight: 700;
-  margin: 2.2rem 0 1.3rem 0;
-  text-align: center;
-  letter-spacing: 0.01em;
-}
-
-.aboutpage-intro,
-.aboutpage-bio {
-  font-size: 1.2rem;
-  color: var(--about-text);
-  line-height: 1.7;
-  margin: 0 auto 1.5rem auto;
-  max-width: 700px;
-  word-break: break-word;
-  text-align: center;
-  letter-spacing: 0.01em;
-}
-
-/* ===== Features Grid/Table Look ===== */
-.aboutpage-features {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  gap: 0.7rem 3.5rem;
-  list-style: disc inside;
-  justify-content: center;
-  align-items: start;
-  max-width: 700px;
-  margin: 0 auto 1.5rem auto;
-  color: var(--about-text);
-  font-size: 1.09rem;
-  padding-left: 0;
-}
-.aboutpage-features li {
-  margin-bottom: 0;
+.intro, .bio {
+  max-width: 680px;
+  margin: 0 auto 2rem;
   line-height: 1.6;
-  padding-left: 0.7em;
-  max-width: 340px;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
-  list-style-position: inside;
+  text-align: center;
 }
 
-/* ===== Gallery Preview (future images) ===== */
-.aboutpage-gallery {
+.gallery-hint {
+  text-align: center;
+  color: #ffe082b0;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Kazim photo */
+.kazim-photo-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.kazim-photo {
+  width: 148px;
+  height: 148px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3.5px solid var(--gold);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.16s;
+  box-shadow: 0 2px 16px #181b2025;
+  background: #232735;
+}
+.kazim-photo:hover, .kazim-photo:focus {
+  transform: scale(1.07);
+  box-shadow: 0 3px 22px #ffe08255;
+}
+
+/* Responsive gallery row */
+.gallery-row {
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.1rem;
-  margin-bottom: 0.3rem;
-  min-height: 32px;
-  width: 100%;
-  max-width: 760px;
+  margin-top: 1.4rem;
+  margin-bottom: 2.6rem;
 }
-.aboutpage-gallery img,
-.aboutpage-gallery .gallery-thumb {
-  width: 120px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 0.6rem;
-  background: #232323;
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 2px 10px #0001;
-}
-.aboutpage-gallery img:hover,
-.aboutpage-gallery .gallery-thumb:hover {
-  transform: scale(1.04);
-  box-shadow: 0 4px 18px #0004;
-}
-
-/* ===== Founder Photo ===== */
-.aboutpage-photo-glowwrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0.7rem;
-}
-.aboutpage-photo-wrap {
-  background: linear-gradient(135deg, #ffe08226 0%, #f7d68110 100%);
-  border-radius: 50%;
-  padding: 14px; /* Slightly increased padding for visual balance with bigger image */
-  box-shadow: 0 2px 24px 0 #f7d68114, 0 2px 18px #10101430;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: box-shadow 0.22s;
-}
-.aboutpage-photo {
-  width: 225px;       /* BIGGER! */
-  height: 225px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--gold-heading);
-  background: var(--about-dark-bg);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
-  cursor: pointer;
-  transition: transform 0.18s, opacity 0.18s, border-color 0.18s, box-shadow 0.19s;
-}
-.aboutpage-photo:hover {
-  transform: scale(1.04) rotate(-1.2deg);
-  opacity: 0.96;
-  border-color: #ffe9ac;
-  box-shadow: 0 6px 32px #ffe08233;
-}
-
-/* ===== Modal Styles (future image modal is ready) ===== */
-.aboutpage-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(16,16,24,0.97);
-  z-index: 1500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: aboutpage-fadein 0.23s;
-  cursor: zoom-out;
-}
-@keyframes aboutpage-fadein {
-  from { opacity: 0; transform: translateY(16px);}
-  to { opacity: 1; transform: translateY(0);}
-}
-.aboutpage-modal-content {
-  position: relative;
-  background: var(--about-dark-bg);
-  border-radius: 1rem;
-  box-shadow: 0 4px 36px rgba(0,0,0,0.89);
-  max-width: 98vw;
-  width: 98vw;
-  max-height: 89vh;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  padding: 0;
-  cursor: default;
-  box-sizing: border-box;
+.thumb-item {
+  background: var(--pill);
+  border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.18s, transform 0.14s;
+  box-shadow: 0 2px 8px #181b2032;
+  width: 170px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-.aboutpage-modal-imgwrap {
+.thumb-item img {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  touch-action: pan-y pinch-zoom;
-}
-.aboutpage-modal-img {
+  object-fit: cover;
+  transition: filter 0.14s, transform 0.14s;
+  border-radius: 9px;
+  background: #232735;
   display: block;
-  max-width: 90vw;
-  max-height: 77vh;
-  width: auto;
-  height: auto;
-  border-radius: 12px;
-  background: var(--about-dark-bg);
-  object-fit: contain;
-  user-select: none;
-  pointer-events: auto;
-  margin: 0 auto;
-  touch-action: pan-y pinch-zoom;
+}
+.thumb-item:hover img,
+.thumb-item:focus img {
+  filter: brightness(1.1) drop-shadow(0 1px 7px #ffe08244);
+  transform: scale(1.035);
+}
+@media (max-width: 900px) {
+  .thumb-item {
+    width: 46vw;
+    height: 28vw;
+    min-width: 130px;
+    min-height: 80px;
+    max-width: 200px;
+    max-height: 120px;
+  }
+}
+@media (max-width: 600px) {
+  .gallery-row {
+    gap: 0.6rem;
+  }
+  .thumb-item {
+    width: 44vw;
+    height: 28vw;
+    min-width: 90px;
+    min-height: 60px;
+  }
 }
 
-.aboutpage-modal-close {
-  position: absolute;
-  top: 13px;
-  right: 13px;
-  z-index: 2;
-  width: 2.2rem;
-  height: 2.2rem;
-  background: rgba(35,35,44,0.92);
-  color: var(--gold-heading);
-  border: none;
-  border-radius: 50%;
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 2.2rem;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.18s, color 0.17s, transform 0.13s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.21);
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.90);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2200;
+}
+
+/* Modal content */
+.modal-content {
+  position: relative;
+  background: var(--bg-dark);
+  border-radius: 11px;
+  padding: 0.6rem 1rem 1.2rem 1rem;
+  max-width: 96vw;
+  max-height: 97vh;
+  box-shadow: 0 8px 48px #000b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: 1.5px solid #ffe08233;
+}
+.modal-image {
+  display: block;
+  max-width: 86vw;
+  max-height: 69vh;
+  border-radius: 8px;
+  background: #222;
+  margin-top: 0.3rem;
+}
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ffe082;
+  color: #181b20;
+  border: none;
+  font-size: 2.3rem;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 10px #0002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.13s, color 0.13s, box-shadow 0.14s;
   padding: 0;
-  touch-action: manipulation;
+  z-index: 11;
 }
-.aboutpage-modal-close:hover,
-.aboutpage-modal-close:focus {
-  background: var(--gold-heading);
-  color: #23252c;
-  outline: none;
-  transform: scale(1.10);
+.modal-close:hover, .modal-close:focus {
+  background: #fffde4;
+  color: #8a7200;
+  box-shadow: 0 2px 20px #ffe08299;
 }
-
-/* ===== MOBILE OPTIMIZATION ===== */
-@media (max-width: 700px) {
-  .aboutpage-root {
-    max-width: 100vw;
-    padding: 1.1rem 0.2rem 1.6rem 0.2rem;
-    gap: 0.7rem;
-  }
-  .aboutpage-title { font-size: 1.18rem; margin-top: 1.7rem;}
-  .aboutpage-sectiontitle { font-size: 1.08rem; margin: 1.3rem 0 0.6rem 0;}
-  .aboutpage-intro, .aboutpage-bio { font-size: 0.96rem; max-width: 98vw;}
-  .aboutpage-features {
-    display: block;
+@media (max-width: 600px) {
+  .modal-content {
     max-width: 99vw;
-    font-size: 0.96rem;
-    gap: 0;
+    max-height: 92vh;
+    padding: 0.2rem 0.2rem 0.6rem 0.2rem;
   }
-  .aboutpage-features li {
-    max-width: 99vw;
-    padding-left: 1.1em;
-    margin-bottom: 0.6em;
+  .modal-image {
+    max-width: 95vw;
+    max-height: 51vh;
   }
-  .aboutpage-gallery {
-    gap: 0.5rem;
-    max-width: 98vw;
+  .modal-close {
+    top: 8px;
+    right: 7px;
+    font-size: 2.1rem;
+    width: 37px;
+    height: 37px;
   }
-  .aboutpage-gallery img,
-  .aboutpage-gallery .gallery-thumb {
-    width: 90px;
-    height: 66px;
-    border-radius: 0.4rem;
-  }
-  .aboutpage-photo { 
-    width: 150px;   /* Bigger than before, but reasonable for mobile */
-    height: 150px;
-  }
-  .aboutpage-photo-wrap { padding: 7px; }
-  .aboutpage-modal-img { max-width: 97vw; max-height: 49vh; border-radius: 7px;}
-  .aboutpage-modal-content { border-radius: 7px; }
-  .aboutpage-modal-close {
-    width: 1.25rem; height: 1.25rem; font-size: 1.02rem; top: 5px; right: 5px; line-height: 1.25rem;
-  }
-}
-
-/* Prevent background scroll when modal open */
-body:has(.aboutpage-modal-overlay) {
-  overflow: hidden !important;
 }
