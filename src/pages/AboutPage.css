@@ -1,201 +1,182 @@
-:root {
-  --gold: #ffe082;
-  --gold-shadow: 0 2px 18px #ffe08225;
-  --bg-dark: #181b20;
-  --pill: #232735;
-}
-
-/* Headings: gold, bold, shadow */
-.section-gold {
-  color: var(--gold);
-  font-weight: bold;
-  font-size: 2.3rem;
-  text-align: center;
-  margin-bottom: 1.1rem;
-  text-shadow: var(--gold-shadow);
-}
-@media (max-width: 600px) {
-  .section-gold {
-    font-size: 1.38rem;
-  }
-}
-
 .about-page {
-  max-width: 940px;
+  padding: 2.5rem 1rem;
+  max-width: 950px;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  color: #f7f7f7;
-  font-family: system-ui, sans-serif;
+  text-align: center;
+  color: #f6f6f6;
 }
 
-.intro, .bio {
-  max-width: 680px;
-  margin: 0 auto 2rem;
+.about-heading {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  color: #ffe082;
+  font-weight: 700;
+}
+
+.section-heading {
+  font-size: 2rem;
+  margin: 2.3rem 0 1.1rem;
+  color: #ffe082;
+  font-weight: 700;
+}
+
+.intro {
+  font-size: 1.15rem;
+  margin: 0 auto 1.6rem;
   line-height: 1.6;
-  text-align: center;
+  max-width: 670px;
+  color: #e8e6d9;
 }
 
-.gallery-hint {
-  text-align: center;
-  color: #ffe082b0;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
+.features-list {
+  list-style-type: disc;
+  padding-left: 1.6rem;
+  margin: 0 auto 2.2rem;
+  max-width: 400px;
+  text-align: left;
+  color: #e8e6d9;
+}
+.features-list li {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
 }
 
-/* Kazim photo */
 .kazim-photo-container {
   display: flex;
   justify-content: center;
   margin-bottom: 1.5rem;
 }
 .kazim-photo {
-  width: 148px;
-  height: 148px;
-  object-fit: cover;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  border: 3.5px solid var(--gold);
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.16s;
-  box-shadow: 0 2px 16px #181b2025;
-  background: #232735;
+  object-fit: cover;
+  border: 3px solid #ffe082;
+  transition: transform 0.2s;
 }
-.kazim-photo:hover, .kazim-photo:focus {
-  transform: scale(1.07);
-  box-shadow: 0 3px 22px #ffe08255;
+.kazim-photo:hover {
+  transform: scale(1.06);
 }
 
-/* Responsive gallery row */
-.gallery-row {
+.bio {
+  font-size: 1rem;
+  max-width: 650px;
+  margin: 0 auto 2.7rem;
+  line-height: 1.6;
+  color: #e8e6d9;
+}
+
+/* --- Before & After Gallery (like before, just thumbnails, no label) --- */
+.gallery-caption {
+  font-size: 1.05rem;
+  color: #ffe082;
+  margin-bottom: 1.1rem;
+}
+
+.before-after-gallery {
   display: flex;
   flex-wrap: wrap;
+  gap: 1.3rem;
   justify-content: center;
-  gap: 1.1rem;
-  margin-top: 1.4rem;
-  margin-bottom: 2.6rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
 }
-.thumb-item {
-  background: var(--pill);
-  border-radius: 10px;
-  overflow: hidden;
+
+.before-after-thumb {
+  background: #232735;
+  border-radius: 13px;
+  box-shadow: 0 2px 12px #0004;
   cursor: pointer;
-  transition: box-shadow 0.18s, transform 0.14s;
-  box-shadow: 0 2px 8px #181b2032;
-  width: 170px;
-  height: 110px;
+  transition: box-shadow 0.13s, transform 0.13s;
+  padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  height: 110px;
+  width: 160px;
 }
-.thumb-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: filter 0.14s, transform 0.14s;
-  border-radius: 9px;
-  background: #232735;
-  display: block;
-}
-.thumb-item:hover img,
-.thumb-item:focus img {
-  filter: brightness(1.1) drop-shadow(0 1px 7px #ffe08244);
-  transform: scale(1.035);
-}
-@media (max-width: 900px) {
-  .thumb-item {
-    width: 46vw;
-    height: 28vw;
-    min-width: 130px;
-    min-height: 80px;
-    max-width: 200px;
-    max-height: 120px;
-  }
-}
-@media (max-width: 600px) {
-  .gallery-row {
-    gap: 0.6rem;
-  }
-  .thumb-item {
-    width: 44vw;
-    height: 28vw;
-    min-width: 90px;
-    min-height: 60px;
-  }
+.before-after-thumb:hover,
+.before-after-thumb:focus {
+  box-shadow: 0 6px 18px #ffe08299, 0 2px 12px #0007;
+  transform: translateY(-3px) scale(1.05);
 }
 
-/* Modal overlay */
+.before-after-img {
+  width: 146px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #191b20;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .before-after-gallery {
+    gap: 0.75rem;
+  }
+  .before-after-thumb {
+    width: 44vw;
+    min-width: 120px;
+    max-width: 172px;
+    height: 82px;
+    padding: 0.17rem;
+  }
+  .before-after-img {
+    width: 97%;
+    height: 73px;
+  }
+  .about-heading, .section-heading { font-size: 1.17rem; }
+}
+
+/* Modal Styles */
 .modal-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.90);
+  z-index: 1200;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(24, 27, 32, 0.93);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 2200;
+  align-items: center;
 }
-
-/* Modal content */
 .modal-content {
+  background: #222;
+  padding: 0.8rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #000a;
+  max-width: 95vw;
+  max-height: 90vh;
   position: relative;
-  background: var(--bg-dark);
-  border-radius: 11px;
-  padding: 0.6rem 1rem 1.2rem 1rem;
-  max-width: 96vw;
-  max-height: 97vh;
-  box-shadow: 0 8px 48px #000b;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  outline: 1.5px solid #ffe08233;
+  align-items: flex-end;
 }
 .modal-image {
+  max-width: 85vw;
+  max-height: 76vh;
+  margin: 0 auto;
+  border-radius: 14px;
   display: block;
-  max-width: 86vw;
-  max-height: 69vh;
-  border-radius: 8px;
-  background: #222;
-  margin-top: 0.3rem;
 }
 .modal-close {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: #ffe082;
-  color: #181b20;
+  top: 0.7rem;
+  right: 1.2rem;
+  background: #232735;
+  color: #ffe082;
   border: none;
-  font-size: 2.3rem;
-  width: 43px;
-  height: 43px;
+  font-size: 2.2rem;
+  line-height: 1;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 2px 10px #0002;
+  width: 2.6rem;
+  height: 2.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.13s, color 0.13s, box-shadow 0.14s;
-  padding: 0;
-  z-index: 11;
+  box-shadow: 0 2px 10px #0006;
+  z-index: 2;
 }
 .modal-close:hover, .modal-close:focus {
-  background: #fffde4;
-  color: #8a7200;
-  box-shadow: 0 2px 20px #ffe08299;
-}
-@media (max-width: 600px) {
-  .modal-content {
-    max-width: 99vw;
-    max-height: 92vh;
-    padding: 0.2rem 0.2rem 0.6rem 0.2rem;
-  }
-  .modal-image {
-    max-width: 95vw;
-    max-height: 51vh;
-  }
-  .modal-close {
-    top: 8px;
-    right: 7px;
-    font-size: 2.1rem;
-    width: 37px;
-    height: 37px;
-  }
+  background: #ffe082;
+  color: #181b20;
 }
