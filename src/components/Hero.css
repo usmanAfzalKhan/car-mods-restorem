@@ -2,9 +2,9 @@
   position: relative;
   overflow: hidden;
   width: 100vw;
-  height: 60vh;
-  min-height: 330px;
-  max-height: 600px;
+  height: 70vh;          /* increased from 60vh */
+  min-height: 400px;     /* increased from 330px */
+  max-height: 780px;     /* increased from 600px */
   background: #181b20;
 }
 
@@ -221,9 +221,9 @@
 /* --- Responsive --- */
 @media (max-width: 900px) {
   .hero {
-    min-height: 250px;
-    height: 37vw;
-    max-height: 360px;
+    min-height: 310px;     /* increased from 250px */
+    height: 62vw;          /* increased from 37vw */
+    max-height: 480px;     /* increased from 360px */
   }
   .hero__welcome-content {
     padding: 1.6rem 0.8rem 1.3rem 0.8rem;

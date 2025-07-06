@@ -125,7 +125,7 @@
 .aboutpage-photo-wrap {
   background: linear-gradient(135deg, #ffe08226 0%, #f7d68110 100%);
   border-radius: 50%;
-  padding: 9px;
+  padding: 14px; /* Slightly increased padding for visual balance with bigger image */
   box-shadow: 0 2px 24px 0 #f7d68114, 0 2px 18px #10101430;
   display: flex;
   justify-content: center;
@@ -133,8 +133,8 @@
   transition: box-shadow 0.22s;
 }
 .aboutpage-photo {
-  width: 164px;
-  height: 164px;
+  width: 225px;       /* BIGGER! */
+  height: 225px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--gold-heading);
@@ -270,8 +270,11 @@
     height: 66px;
     border-radius: 0.4rem;
   }
-  .aboutpage-photo { width: 90px; height: 90px;}
-  .aboutpage-photo-wrap { padding: 4px;}
+  .aboutpage-photo { 
+    width: 150px;   /* Bigger than before, but reasonable for mobile */
+    height: 150px;
+  }
+  .aboutpage-photo-wrap { padding: 7px; }
   .aboutpage-modal-img { max-width: 97vw; max-height: 49vh; border-radius: 7px;}
   .aboutpage-modal-content { border-radius: 7px; }
   .aboutpage-modal-close {
