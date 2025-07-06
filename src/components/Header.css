@@ -63,9 +63,16 @@
   text-shadow: 0 1px 9px #181b2020;
 }
 
-/* Desktop nav links */
+/* Desktop nav links (default: show, but overridden by media queries below) */
 .header__nav {
-  display: none;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 .header__link {
   display: block;
@@ -90,14 +97,14 @@
   color: #ffe082;
 }
 
-/* Hamburger (mobile only) */
+/* Hamburger (hidden by default) */
 .header__burger {
   background: none;
   border: none;
   padding: 0.5rem;
   cursor: pointer;
   z-index: 100;
-  display: block;
+  display: none;
 }
 .burger-bar {
   display: block;
@@ -108,9 +115,9 @@
   transition: background 0.2s;
 }
 
-/* Mobile menu */
+/* Mobile menu styling (when is-open class is added by React) */
 .header__nav.is-open {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   position: absolute;
   top: 100%;
@@ -127,9 +134,24 @@
   text-align: center;
 }
 
-/* HIDE HAMBURGER & SHOW NAV ON DESKTOP */
-@media (min-width: 768px) {
-  .header__burger { display: none; }
+/* RESPONSIVE: COLLAPSE NAV TO HAMBURGER BELOW 1200px */
+@media (max-width: 1200px) {
+  .header__burger {
+    display: block !important;
+  }
+  .header__nav {
+    display: none !important;
+  }
+  .header__nav.is-open {
+    display: flex !important;
+  }
+}
+
+/* DESKTOP NAV: SHOW ONLY ABOVE 1200px */
+@media (min-width: 1201px) {
+  .header__burger {
+    display: none !important;
+  }
   .header__nav {
     display: flex !important;
     position: static;
