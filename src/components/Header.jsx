@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 import logoImg from '../assets/images/logo.png';
 
@@ -24,21 +24,23 @@ export default function Header() {
 
         {/* Hamburger (mobile only) */}
         <button
-          className="header__burger"
+          className={`header__burger${menuOpen ? ' is-open' : ''}`}
           onClick={() => setMenuOpen(o => !o)}
           aria-label="Toggle navigation"
         >
-          <div className={`burger ${menuOpen ? 'burger--open' : ''}`} />
+          <span className="burger-bar" />
+          <span className="burger-bar" />
+          <span className="burger-bar" />
         </button>
 
         {/* Nav links */}
-        <nav className={`header__nav${menuOpen ? ' header__nav--open' : ''}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-          <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
-          <Link to="/reviews" onClick={() => setMenuOpen(false)}>Reviews</Link>
-          <Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
-          <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        <nav className={`header__nav${menuOpen ? ' is-open' : ''}`}>
+          <NavLink to="/"       className="header__link" onClick={() => setMenuOpen(false)} end>Home</NavLink>
+          <NavLink to="/about"  className="header__link" onClick={() => setMenuOpen(false)}>About</NavLink>
+          <NavLink to="/services" className="header__link" onClick={() => setMenuOpen(false)}>Services</NavLink>
+          <NavLink to="/reviews"  className="header__link" onClick={() => setMenuOpen(false)}>Reviews</NavLink>
+          <NavLink to="/faq"      className="header__link" onClick={() => setMenuOpen(false)}>FAQ</NavLink>
+          <NavLink to="/contact"  className="header__link" onClick={() => setMenuOpen(false)}>Contact</NavLink>
         </nav>
       </div>
     </header>
