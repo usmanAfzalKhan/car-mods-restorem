@@ -1,105 +1,179 @@
-/* ===== Core Page Layout ===== */
+:root {
+  --gold-heading: #f7d681;
+  --about-text: #fcfbf7;
+  --about-muted: #b6ad97;
+  --about-dark-bg: #181b20;
+}
+
+/* ===== General Layout ===== */
 .aboutpage-root {
   width: 100%;
-  max-width: 420px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 1.4rem 0.7rem 2.2rem 0.7rem;
-  background: transparent;
+  padding: 2.4rem 1.1rem 2.7rem 1.1rem;
   box-sizing: border-box;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  align-items: center;
+  background: none;
+}
+
+.aboutpage-section {
+  width: 100%;
+  margin: 0 auto 0.5rem auto;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .aboutpage-title {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 0.7rem;
+  color: var(--gold-heading);
+  text-align: center;
+  margin: 2.6rem 0 1.5rem 0;
   letter-spacing: -0.01em;
-  color: #ffe082;
 }
+
 .aboutpage-sectiontitle {
-  font-size: 1.15rem;
-  margin: 2rem 0 0.6rem 0;
-  font-weight: 600;
-  color: #ffe082;
+  font-size: 2rem;
+  color: var(--gold-heading);
+  font-weight: 700;
+  margin: 2.2rem 0 1.3rem 0;
+  text-align: center;
+  letter-spacing: 0.01em;
 }
+
 .aboutpage-intro,
 .aboutpage-bio {
-  font-size: 1rem;
-  color: #e8e8e8;
-  line-height: 1.6;
-  margin: 0 auto 1.2rem auto;
-  max-width: 370px;
+  font-size: 1.2rem;
+  color: var(--about-text);
+  line-height: 1.7;
+  margin: 0 auto 1.5rem auto;
+  max-width: 700px;
   word-break: break-word;
+  text-align: center;
+  letter-spacing: 0.01em;
 }
+
+/* ===== Features Grid/Table Look ===== */
 .aboutpage-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 0.7rem 3.5rem;
   list-style: disc inside;
-  text-align: left;
-  padding: 0 0 0 1.1rem;
-  margin: 0 auto 1.6rem auto;
-  max-width: 350px;
-  color: #d6c281;
-  font-size: 0.99rem;
+  justify-content: center;
+  align-items: start;
+  max-width: 700px;
+  margin: 0 auto 1.5rem auto;
+  color: var(--about-text);
+  font-size: 1.09rem;
+  padding-left: 0;
 }
 .aboutpage-features li {
-  margin-bottom: 0.55rem;
-  line-height: 1.5;
+  margin-bottom: 0;
+  line-height: 1.6;
+  padding-left: 0.7em;
+  max-width: 340px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  list-style-position: inside;
 }
-.aboutpage-photo-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-.aboutpage-photo {
-  width: 94px;
-  height: 94px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ffe082;
-  background: #191c1f;
-  box-shadow: 0 3px 18px rgba(0,0,0,0.14);
-  cursor: pointer;
-  transition: transform 0.18s, opacity 0.18s, border-color 0.18s;
-}
-.aboutpage-photo:hover {
-  transform: scale(1.07);
-  opacity: 0.88;
-  border-color: #ffd744;
-}
+
+/* ===== Gallery Preview (future images) ===== */
 .aboutpage-gallery {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.2rem;
+  gap: 1.1rem;
+  margin-bottom: 0.3rem;
   min-height: 32px;
+  width: 100%;
+  max-width: 760px;
+}
+.aboutpage-gallery img,
+.aboutpage-gallery .gallery-thumb {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 0.6rem;
+  background: #232323;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 2px 10px #0001;
+}
+.aboutpage-gallery img:hover,
+.aboutpage-gallery .gallery-thumb:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 18px #0004;
 }
 
-/* ===== Modal Styles ===== */
+/* ===== Founder Photo ===== */
+.aboutpage-photo-glowwrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+.aboutpage-photo-wrap {
+  background: linear-gradient(135deg, #ffe08226 0%, #f7d68110 100%);
+  border-radius: 50%;
+  padding: 9px;
+  box-shadow: 0 2px 24px 0 #f7d68114, 0 2px 18px #10101430;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.22s;
+}
+.aboutpage-photo {
+  width: 164px;
+  height: 164px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold-heading);
+  background: var(--about-dark-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  cursor: pointer;
+  transition: transform 0.18s, opacity 0.18s, border-color 0.18s, box-shadow 0.19s;
+}
+.aboutpage-photo:hover {
+  transform: scale(1.04) rotate(-1.2deg);
+  opacity: 0.96;
+  border-color: #ffe9ac;
+  box-shadow: 0 6px 32px #ffe08233;
+}
+
+/* ===== Modal Styles (future image modal is ready) ===== */
 .aboutpage-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(16,16,24,0.93);
+  background: rgba(16,16,24,0.97);
   z-index: 1500;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: aboutpage-fadein 0.19s;
+  animation: aboutpage-fadein 0.23s;
   cursor: zoom-out;
 }
 @keyframes aboutpage-fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(16px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 .aboutpage-modal-content {
   position: relative;
-  background: #191c1f;
-  border-radius: 11px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.78);
-  max-width: 96vw;
-  width: 100%;
-  max-height: 92vh;
-  min-width: 0;
+  background: var(--about-dark-bg);
+  border-radius: 1rem;
+  box-shadow: 0 4px 36px rgba(0,0,0,0.89);
+  max-width: 98vw;
+  width: 98vw;
+  max-height: 89vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -116,78 +190,96 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* For touch devices: allows scroll if image is large */
+  touch-action: pan-y pinch-zoom;
 }
 .aboutpage-modal-img {
   display: block;
-  max-width: 92vw;
-  max-height: 80vh;
+  max-width: 90vw;
+  max-height: 77vh;
   width: auto;
   height: auto;
-  border-radius: 9px;
-  background: #181b20;
+  border-radius: 12px;
+  background: var(--about-dark-bg);
   object-fit: contain;
   user-select: none;
   pointer-events: auto;
   margin: 0 auto;
+  touch-action: pan-y pinch-zoom;
 }
 
-/* ===== Modal Close Button ===== */
 .aboutpage-modal-close {
   position: absolute;
   top: 13px;
   right: 13px;
   z-index: 2;
-  width: 2.3rem;
-  height: 2.3rem;
-  background: rgba(35,35,44,0.79);
-  color: #ffe082;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: rgba(35,35,44,0.92);
+  color: var(--gold-heading);
   border: none;
   border-radius: 50%;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  line-height: 2.3rem;
+  line-height: 2.2rem;
   text-align: center;
   cursor: pointer;
-  transition: background 0.19s, color 0.18s, transform 0.12s;
-  box-shadow: 0 1.5px 7px rgba(0,0,0,0.15);
+  transition: background 0.18s, color 0.17s, transform 0.13s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.21);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  touch-action: manipulation;
 }
 .aboutpage-modal-close:hover,
 .aboutpage-modal-close:focus {
-  background: #ffe082;
+  background: var(--gold-heading);
   color: #23252c;
   outline: none;
-  transform: scale(1.11);
+  transform: scale(1.10);
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 600px) {
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 700px) {
   .aboutpage-root {
     max-width: 100vw;
-    padding: 1rem 0.13rem 1.1rem 0.13rem;
+    padding: 1.1rem 0.2rem 1.6rem 0.2rem;
+    gap: 0.7rem;
   }
-  .aboutpage-title { font-size: 1.21rem; }
-  .aboutpage-sectiontitle { font-size: 1rem; }
-  .aboutpage-intro,
-  .aboutpage-bio { font-size: 0.97rem; }
-  .aboutpage-photo { width: 65px; height: 65px; }
-  .aboutpage-modal-img { max-width: 97vw; max-height: 60vh; border-radius: 7px; }
+  .aboutpage-title { font-size: 1.18rem; margin-top: 1.7rem;}
+  .aboutpage-sectiontitle { font-size: 1.08rem; margin: 1.3rem 0 0.6rem 0;}
+  .aboutpage-intro, .aboutpage-bio { font-size: 0.96rem; max-width: 98vw;}
+  .aboutpage-features {
+    display: block;
+    max-width: 99vw;
+    font-size: 0.96rem;
+    gap: 0;
+  }
+  .aboutpage-features li {
+    max-width: 99vw;
+    padding-left: 1.1em;
+    margin-bottom: 0.6em;
+  }
+  .aboutpage-gallery {
+    gap: 0.5rem;
+    max-width: 98vw;
+  }
+  .aboutpage-gallery img,
+  .aboutpage-gallery .gallery-thumb {
+    width: 90px;
+    height: 66px;
+    border-radius: 0.4rem;
+  }
+  .aboutpage-photo { width: 90px; height: 90px;}
+  .aboutpage-photo-wrap { padding: 4px;}
+  .aboutpage-modal-img { max-width: 97vw; max-height: 49vh; border-radius: 7px;}
   .aboutpage-modal-content { border-radius: 7px; }
   .aboutpage-modal-close {
-    width: 1.65rem;
-    height: 1.65rem;
-    font-size: 1.1rem;
-    top: 7px;
-    right: 7px;
-    line-height: 1.7rem;
+    width: 1.25rem; height: 1.25rem; font-size: 1.02rem; top: 5px; right: 5px; line-height: 1.25rem;
   }
 }
 
-/* Prevent background scroll when modal open (universal for all browsers) */
+/* Prevent background scroll when modal open */
 body:has(.aboutpage-modal-overlay) {
   overflow: hidden !important;
 }
