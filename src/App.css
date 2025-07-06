@@ -11,7 +11,7 @@ html, body, #root {
 }
 
 /* Headings: clear, simple */
-h1, h2, h3, h4, .header__title {
+h1, h2, h3, h4 {
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 600;
   color: #f4eede;
@@ -28,36 +28,6 @@ h1, h2, h3, h4, .header__title {
   box-shadow: 0 2px 12px #0002;
   margin-bottom: 1.1rem;
   padding: 1.05rem 1.18rem;
-}
-
-/* Navigation */
-.header__logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: contain;
-  margin-right: 0.62rem;
-}
-.header__brand {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.header__nav a {
-  color: #f7f7f7 !important;
-  font-weight: 600;
-  padding: 0.5em 1em;
-  transition: color 0.18s;
-  border-bottom: 2px solid transparent;
-}
-.header__nav a:hover, .header__nav a:focus {
-  color: #f4eede !important;
-  border-bottom: 2px solid #7e7f81;
-  text-decoration: none;
-}
-.header__nav--open {
-  background: #23262a !important;
-  border-radius: 10px;
 }
 
 /* Buttons */
@@ -116,8 +86,6 @@ footer {
 
 /* Responsive for mobile */
 @media (max-width: 900px) {
-  .header__logo { width: 36px; height: 36px; }
-  .header__title { font-size: 1.1rem !important; }
   .card, .offer-card-restorem, .faq-item, .service-detail, .review-box {
     border-radius: 8px !important;
     padding: 0.7em 0.7em !important;
@@ -129,7 +97,6 @@ footer {
     max-width: 99vw !important;
     padding: 0.55rem 0.11rem 0.8rem 0.11rem !important;
   }
-  .header__nav--open { border-radius: 0.45em !important; }
 }
 
 *, *:before, *:after {
