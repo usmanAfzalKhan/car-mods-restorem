@@ -16,6 +16,8 @@
   flex-direction: column;
   align-items: center;
   background: transparent;
+  /* Add a bit of top margin for gap from header */
+  margin-top: 1.3rem;
 }
 
 .detail-title {
@@ -221,6 +223,7 @@
   .service-detail-center {
     max-width: 740px;
     padding: 2.2rem 2.2rem 2.6rem 2.2rem;
+    margin-top: 2.1rem;
   }
   .detail-row {
     flex-direction: row;
@@ -262,6 +265,7 @@
   .service-detail-center {
     padding: 0.9rem 0.04rem 0.9rem 0.04rem;
     max-width: 99vw;
+    margin-top: 0.95rem;
   }
   .detail-title {
     font-size: 1.11rem;
