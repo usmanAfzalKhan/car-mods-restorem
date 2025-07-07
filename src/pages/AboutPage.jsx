@@ -7,36 +7,26 @@ export default function AboutPage() {
   const [modalOpen, setModalOpen] = useState(false); // false | "kazim" | number
   const [modalIndex, setModalIndex] = useState(0);
   const modalRef = useRef();
-  const focusTrap = useRef();
-
-  // Always focus the trap input for keyboard control
-  useEffect(() => {
-    if (modalOpen !== false && focusTrap.current) {
-      focusTrap.current.focus();
-    }
-  }, [modalOpen]);
 
   // Keyboard controls (ESC, arrows)
-  const handleKey = (e) => {
-    if (modalOpen === false) return;
-    if (e.key === "Escape") setModalOpen(false);
-    if (typeof modalOpen === "number") {
-      if (e.key === "ArrowRight") nextImg();
-      if (e.key === "ArrowLeft") prevImg();
-    }
-  };
-
-  // Attach to hidden focus trap for consistent keyboard nav
   useEffect(() => {
     if (modalOpen === false) return;
-    const trap = focusTrap.current;
-    if (!trap) return;
-    trap.addEventListener("keydown", handleKey);
-    return () => trap.removeEventListener("keydown", handleKey);
+
+    const handleKey = (e) => {
+      if (modalOpen === false) return;
+      if (e.key === "Escape") setModalOpen(false);
+      if (typeof modalOpen === "number") {
+        if (e.key === "ArrowRight") nextImg();
+        if (e.key === "ArrowLeft") prevImg();
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
     // eslint-disable-next-line
   }, [modalOpen, modalIndex]);
 
-  // Swipe support for gallery modal
+  // Swipe support for gallery modal (mobile)
   useEffect(() => {
     if (typeof modalOpen !== "number") return;
     let startX = 0;
@@ -64,7 +54,7 @@ export default function AboutPage() {
       setModalOpen("kazim");
     } else {
       setModalIndex(idx);
-      setModalOpen(idx); // Always set as number!
+      setModalOpen(idx);
     }
   };
   const prevImg = () =>
@@ -112,8 +102,6 @@ export default function AboutPage() {
       {modalOpen === "kazim" && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
           <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
-            {/* Hidden input for keyboard trap */}
-            <input ref={focusTrap} style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: 0 }} tabIndex={0} />
             <button className="modal-close" onClick={() => setModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
             <img src={founderImg} alt="Kazim full" className="modal-image" />
           </div>
@@ -124,8 +112,6 @@ export default function AboutPage() {
       {typeof modalOpen === "number" && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
           <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
-            {/* Hidden input for keyboard trap */}
-            <input ref={focusTrap} style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: 0 }} tabIndex={0} />
             <button className="modal-close" onClick={() => setModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
             <button className="modal-nav prev" onClick={prevImg} aria-label="Previous">&#60;</button>
             <img src={beforeAfterImages[modalIndex].src} alt={`Before & After ${modalIndex + 1}`} className="modal-image" />
