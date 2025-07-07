@@ -1,60 +1,176 @@
 .services-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1.8rem 1rem 3rem 1rem;
+  background: transparent;
+  color: #f6f6f6;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
 }
 
 .services-title {
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: #ffe082;
+  margin-bottom: 2.3rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 16px #191b2175;
 }
 
+/* MAIN UPDATE: Center grid and limit to max 3 columns */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2.2rem;
+  justify-content: center;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .service-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 1rem;
+  background: rgba(23, 25, 38, 0.95);
+  border-radius: 14px;
+  box-shadow: 0 4px 28px #0007, 0 1.5px 6px #23273522;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1.2rem 1rem 1.2rem 1rem;
+  transition: transform 0.16s, box-shadow 0.17s;
+  border: 1.2px solid #363948;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.service-card:hover,
+.service-card:focus-within {
+  transform: translateY(-6px) scale(1.025);
+  box-shadow: 0 12px 36px #ffe08235, 0 2px 12px #0008;
+  border-color: #ffe082cc;
+}
+
+.service-image-wrap {
+  width: 100%;
+  aspect-ratio: 3/2;
+  background: #191b21;
+  border-radius: 9px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px #ffe08211;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .service-image {
   width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9px;
+  transition: transform 0.18s;
+  background: #181b20;
+  min-height: 120px;
+  max-height: 180px;
+  display: block;
+}
+.service-card:hover .service-image,
+.service-card:focus-within .service-image {
+  transform: scale(1.045);
+  box-shadow: 0 2px 18px #ffe08224;
 }
 
 .service-name {
-  font-size: 1.25rem;
-  margin: 0.5rem 0;
+  margin: 0.6rem 0 0.5rem 0;
+  font-size: 1.16rem;
+  color: #ffe082;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 12px #191b2152;
   text-align: center;
 }
 
-.service-description {
-  font-size: 0.95rem;
-  text-align: center;
-  flex-grow: 1;
-  margin-bottom: 1rem;
+.service-footer {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
+/* BUTTON: no bg change on hover, only gold glow */
 .service-button {
-  background-color: #0066cc;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  background: #232735;
+  color: #ffe082;
+  border: 1.7px solid #ffe082;
   text-decoration: none;
-  font-weight: 500;
+  padding: 0.68rem 2rem;
+  border-radius: 11px;
+  font-weight: 600;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 16px #191b2118;
+  transition:
+    box-shadow 0.18s,
+    filter 0.13s,
+    border-color 0.16s;
+  outline: none;
+  cursor: pointer;
+  margin: 1rem 0 0 0;
+  text-align: center;
+  display: block;
+  letter-spacing: 0.01em;
+  width: fit-content;
+  max-width: 100%;
+  filter: none;
 }
 
-.service-button:hover {
-  background-color: #005bb5;
+.service-button:hover,
+.service-button:focus {
+  box-shadow: 0 0 18px 2px #ffe08280, 0 4px 16px #ffe08228;
+  border-color: #ffe082;
+  filter: brightness(1.08);
+  background: #232735;
+  color: #ffe082;
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    max-width: 610px;
+  }
+  .service-card {
+    padding: 1rem 0.6rem 1rem 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-title {
+    font-size: 1.35rem;
+    margin-bottom: 1.45rem;
+  }
+  .services-page {
+    padding: 1.1rem 0.2rem 2rem 0.2rem;
+  }
+  .services-grid {
+    gap: 0.6rem;
+    max-width: 98vw;
+  }
+  .service-image {
+    min-height: 70px;
+    max-height: 120px;
+  }
+  .service-card {
+    padding: 0.82rem 0.15rem 0.95rem 0.15rem;
+  }
+  .service-name {
+    font-size: 1rem;
+  }
+  .service-button {
+    font-size: 0.97rem;
+    padding: 0.54rem 1.2rem;
+    margin: 0.7rem 0 0 0;
+  }
 }
