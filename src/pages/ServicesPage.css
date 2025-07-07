@@ -1,90 +1,96 @@
 .services-page {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 1.8rem 1rem 3rem 1rem;
-  background: transparent;
+  padding: 2.5rem 1rem 3rem 1rem;
   color: #f6f6f6;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
 }
 
 .services-title {
   text-align: center;
-  font-size: 2.3rem;
+  font-size: 2.25rem;
   font-weight: bold;
   color: #ffe082;
-  margin-bottom: 2.3rem;
-  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.01em;
   text-shadow: 0 2px 16px #191b2175;
 }
 
-/* MAIN UPDATE: Center grid and limit to max 3 columns */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 2.2rem;
+/* --- Flex centering wrapper --- */
+.services-flex-outer {
+  width: 100%;
+  display: flex;
   justify-content: center;
-  align-items: start;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
+/* --- Flexbox card layout --- */
+.services-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.2rem 2.2rem;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 0.2rem;
+}
+
+/* Card styling */
 .service-card {
-  background: rgba(23, 25, 38, 0.95);
-  border-radius: 14px;
-  box-shadow: 0 4px 28px #0007, 0 1.5px 6px #23273522;
+  background: rgba(23, 25, 38, 0.97);
+  border-radius: 17px;
+  box-shadow: 0 4px 20px #0008, 0 2px 8px #23273522;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.2rem 1rem 1.2rem 1rem;
-  transition: transform 0.16s, box-shadow 0.17s;
-  border: 1.2px solid #363948;
-  position: relative;
-  min-width: 0;
-  min-height: 0;
-  justify-content: space-between;
-  height: 100%;
+  border: 1.5px solid #ffe08233;
+  min-width: 270px;
+  max-width: 330px;
+  width: 100%;
+  margin: 0;
+  transition: transform 0.14s, box-shadow 0.16s, border-color 0.13s;
 }
 
 .service-card:hover,
 .service-card:focus-within {
-  transform: translateY(-6px) scale(1.025);
-  box-shadow: 0 12px 36px #ffe08235, 0 2px 12px #0008;
-  border-color: #ffe082cc;
+  transform: translateY(-7px) scale(1.03);
+  box-shadow: 0 10px 40px #ffe08225, 0 4px 18px #000b;
+  border-color: #ffe082bb;
 }
 
 .service-image-wrap {
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: 16/9;
   background: #191b21;
-  border-radius: 9px;
+  border-radius: 11px;
   overflow: hidden;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 12px #ffe08211;
+  box-shadow: 0 2px 10px #ffe0820c;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 90px;
+  max-height: 140px;
 }
 
 .service-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 9px;
-  transition: transform 0.18s;
+  border-radius: 11px;
   background: #181b20;
-  min-height: 120px;
-  max-height: 180px;
+  transition: transform 0.17s;
   display: block;
 }
 .service-card:hover .service-image,
 .service-card:focus-within .service-image {
-  transform: scale(1.045);
-  box-shadow: 0 2px 18px #ffe08224;
+  transform: scale(1.04);
+  box-shadow: 0 2px 20px #ffe08222;
 }
 
 .service-name {
-  margin: 0.6rem 0 0.5rem 0;
-  font-size: 1.16rem;
+  margin: 0.45rem 0 0.2rem 0;
+  font-size: 1.14rem;
   color: #ffe082;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -93,31 +99,27 @@
 }
 
 .service-footer {
-  margin-top: auto;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  margin-top: 0.2rem;
 }
 
-/* BUTTON: no bg change on hover, only gold glow */
 .service-button {
   background: #232735;
   color: #ffe082;
   border: 1.7px solid #ffe082;
   text-decoration: none;
-  padding: 0.68rem 2rem;
-  border-radius: 11px;
+  padding: 0.55rem 1.6rem;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 1.08rem;
-  box-shadow: 0 2px 16px #191b2118;
-  transition:
-    box-shadow 0.18s,
-    filter 0.13s,
-    border-color 0.16s;
+  font-size: 1.06rem;
+  box-shadow: 0 2px 14px #191b2118;
+  transition: box-shadow 0.18s, filter 0.13s, border-color 0.16s;
   outline: none;
   cursor: pointer;
-  margin: 1rem 0 0 0;
+  margin: 0.15rem 0 0 0;
   text-align: center;
   display: block;
   letter-spacing: 0.01em;
@@ -130,47 +132,68 @@
 .service-button:focus {
   box-shadow: 0 0 18px 2px #ffe08280, 0 4px 16px #ffe08228;
   border-color: #ffe082;
-  filter: brightness(1.08);
+  filter: brightness(1.09);
   background: #232735;
   color: #ffe082;
 }
 
-@media (max-width: 900px) {
-  .services-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.2rem;
-    max-width: 610px;
-  }
-  .service-card {
-    padding: 1rem 0.6rem 1rem 0.6rem;
+/* Tablet: 2 columns, center grid */
+@media (max-width: 1100px) {
+  .services-flex {
+    gap: 1.3rem 1.3rem;
+    max-width: 700px;
   }
 }
 
+/* Mobile: 1 column, thin, centered */
 @media (max-width: 600px) {
   .services-title {
-    font-size: 1.35rem;
-    margin-bottom: 1.45rem;
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
   }
   .services-page {
-    padding: 1.1rem 0.2rem 2rem 0.2rem;
+    padding: 0.7rem 0.05rem 1.2rem 0.05rem;
   }
-  .services-grid {
-    gap: 0.6rem;
-    max-width: 98vw;
+  .services-flex-outer {
+    display: block;
   }
-  .service-image {
-    min-height: 70px;
-    max-height: 120px;
+  .services-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem 0;
+    max-width: 100vw;
   }
   .service-card {
-    padding: 0.82rem 0.15rem 0.95rem 0.15rem;
+    min-width: 0;
+    max-width: 330px;
+    width: 96vw;
+    border-radius: 11px;
+    padding: 0.48rem 0.13rem 0.62rem 0.13rem;
+    box-shadow: 0 2px 7px #0006, 0 1.5px 4px #23273516;
+    margin: 0 auto;
+  }
+  .service-image-wrap {
+    min-height: 68px;
+    max-height: 90px;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    margin-bottom: 0.29rem;
+  }
+  .service-image {
+    border-radius: 8px;
   }
   .service-name {
-    font-size: 1rem;
+    font-size: 0.97rem;
+    margin: 0.14rem 0 0.22rem 0;
+    font-weight: 700;
+  }
+  .service-footer {
+    margin-top: 0.04rem;
   }
   .service-button {
-    font-size: 0.97rem;
-    padding: 0.54rem 1.2rem;
-    margin: 0.7rem 0 0 0;
+    font-size: 0.87rem;
+    padding: 0.31rem 0.95rem;
+    margin: 0.06rem 0 0 0;
+    border-radius: 8px;
   }
 }

@@ -1,67 +1,114 @@
-// src/data/services.js
 export const services = [
   {
     id: 'headlight-restoration',
     title: 'Headlight Restoration',
-    imgUrl: 'https://via.placeholder.com/800x400?text=Headlight+Restoration',
+    imgUrl: '/images/headlight-restoration.png',
     description:
       'Restore clouded, yellowed or dull headlight lenses to factory-clear. We use a precision polish system plus UV sealant to protect them for years.',
-    price: 120
+    whatsIncluded: [
+      "Multi-stage wet sanding and polishing",
+      "UV-protective clear coat application",
+      "Lens cleaning and prep",
+      "Restores clarity, improves night visibility",
+      "No removal of headlight required"
+    ]
   },
   {
     id: 'android-stereos',
     title: 'Android Stereos',
-    imgUrl: 'https://via.placeholder.com/800x400?text=Android+Stereos',
+    imgUrl: '/images/android-stereo.png',
     description:
       'Upgrade your dash with a modern Android-powered touchscreen unit. Bluetooth, CarPlay/Android Auto, navigation, and more, all professionally installed.',
-    price: 250
+    whatsIncluded: [
+      "Android/Apple CarPlay/BT integration",
+      "Touchscreen unit & wiring harness",
+      "Seamless dash installation",
+      "Microphone & backup camera ready",
+      "Hands-free phone/music controls"
+    ]
   },
   {
     id: 'parking-sensors',
     title: 'Parking Sensors',
-    imgUrl: 'https://via.placeholder.com/800x400?text=Parking+Sensors',
+    imgUrl: '/images/parking-sensors.png',
     description:
       'Add front and/or rear parking sensors to help you park safely and with confidence in tight spots.',
-    price: 180
+    whatsIncluded: [
+      "4 or 8 ultrasonic sensors (front/rear)",
+      "Bumper color-matched installation",
+      "Audible beeps or visual display",
+      "System calibration",
+      "Professional, hidden wiring"
+    ]
   },
   {
     id: 'blindspot-monitor',
     title: 'Blindspot Monitor',
-    imgUrl: 'https://via.placeholder.com/800x400?text=Blindspot+Monitor',
+    imgUrl: '/images/blindspot-monitor.png',
     description:
       'Install radar-based blindspot monitors that alert you when vehicles enter your blind zone.',
-    price: 220
+    whatsIncluded: [
+      "Radar sensors mounted in rear bumper",
+      "LED indicators for side mirrors",
+      "Audible/visual alerts",
+      "Professional integration",
+      "Compatible with most vehicles"
+    ]
   },
   {
     id: 'led-lighting',
     title: 'LED Lighting',
-    imgUrl: 'https://via.placeholder.com/800x400?text=LED+Lighting',
+    imgUrl: '/images/led-lighting.png',
     description:
       'Replace factory bulbs with long-lasting, high-output LED lighting for headlights, tail lights, or interior.',
-    price: 140
+    whatsIncluded: [
+      "Premium LED bulb upgrade",
+      "Headlights, taillights, or interior",
+      "Plug-and-play or custom install",
+      "Color/brightness options",
+      "No dashboard errors"
+    ]
   },
   {
     id: 'ambient-lighting',
     title: 'Ambient Lighting',
-    imgUrl: 'https://via.placeholder.com/800x400?text=Ambient+Lighting',
+    imgUrl: '/images/ambient-lighting.png',
     description:
       'Add mood lighting to your footwells, doors, or dash with dozens of colors and bluetooth control.',
-    price: 200
+    whatsIncluded: [
+      "Multi-color RGB LED strips",
+      "Custom footwell/door/dash lighting",
+      "Bluetooth/app control",
+      "Fade and color modes",
+      "Clean, hidden wiring"
+    ]
   },
   {
     id: 'underglow',
     title: 'Underglow',
-    imgUrl: 'https://via.placeholder.com/800x400?text=Underglow',
+    imgUrl: '/images/underglow.png',
     description:
       'Install vibrant undercarriage LED strips with remote-controlled color and strobe effects.',
-    price: 230
+    whatsIncluded: [
+      "Waterproof RGB LED underglow kit",
+      "Remote or app control",
+      "Strobe, fade, and static modes",
+      "Hidden, weather-resistant wiring",
+      "Custom fit for your vehicle"
+    ]
   },
   {
-    id: 'back-up-camera',
-    title: 'Back Up Camera',
-    imgUrl: 'https://via.placeholder.com/800x400?text=Back+Up+Camera',
+    id: 'backup-camera',
+    title: 'Backup Camera',
+    imgUrl: '/images/backup-camera.png',
     description:
       'Mount a high-resolution rear-view camera and integrate it into your dash display for safe reversing.',
-    price: 150
+    whatsIncluded: [
+      "Rear camera mounting and alignment",
+      "Connection to existing or new dash display",
+      "Reverse signal integration",
+      "Wide-angle, low-light camera (night vision)",
+      "Tested for clear, reliable video"
+    ]
   }
 ];
