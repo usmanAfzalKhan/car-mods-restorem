@@ -39,7 +39,7 @@
   margin-bottom: 1.2rem;
 }
 
-/* FOUNDER IMAGE - BIGGEST YET + SMOOTH FADE */
+/* FOUNDER IMAGE - BIG DESKTOP & MOBILE */
 .kazim-photo {
   width: 320px;
   height: 320px;
@@ -51,6 +51,7 @@
   transition: transform 0.18s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.18s;
   background: #191b21;
   animation: fadein-img 0.6s;
+  max-width: 96vw;
 }
 .kazim-photo:hover, .kazim-photo:active {
   transform: scale(1.09);
@@ -61,13 +62,32 @@
   to { opacity: 1; }
 }
 
-/* Gallery instructions, gallery grid, modal, nav, etc. remain unchanged... */
+@media (max-width: 600px) {
+  .kazim-photo {
+    width: 96vw !important;
+    height: auto !important;
+    max-width: 320px;
+    min-width: 140px;
+    aspect-ratio: 1/1;
+  }
+}
+@media (max-width: 350px) {
+  .kazim-photo {
+    min-width: 100px;
+    max-width: 96vw;
+  }
+}
+
+/* ---- REST OF YOUR ORIGINAL CSS ---- */
 
 .about-gallery-instruction {
-  color: #ffe082;
-  font-size: 1rem;
+  color: #ffe7a0;
+  font-size: 0.70rem; /* smaller than before */
   margin-bottom: 1.2rem;
+  opacity: 0.93;
+  letter-spacing: 0.01em;
 }
+
 .before-after-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -194,21 +214,16 @@
   background: #ffd14a;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 1100px) {
-  .kazim-photo { width: 210px; height: 210px; }
+/* Responsive tweaks for modal image/gallery */
+@media (max-width: 900px) {
+  .modal-image { max-width: 92vw; max-height: 60vh; }
+  .modal-nav.prev { left: 12px; }
+  .modal-nav.next { right: 12px; }
 }
 @media (max-width: 700px) {
-  .kazim-photo { width: 140px; height: 140px; }
   .modal-image { max-width: 92vw; max-height: 46vh; }
   .modal-nav.prev { left: 3px;}
   .modal-nav.next { right: 3px;}
-}
-@media (max-width: 500px) {
-  .kazim-photo { width: 110px; height: 110px; }
-}
-@media (max-width: 375px) {
-  .kazim-photo { width: 90px; height: 90px; }
 }
 @media (max-width: 600px) {
   .about-main-title, .about-section-title {
@@ -230,4 +245,7 @@
     max-width: 96vw;
     max-height: 38vh;
   }
+}
+@media (max-width: 375px) {
+  .kazim-photo { min-width: 90px; width: 90px; height: 90px; }
 }

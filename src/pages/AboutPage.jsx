@@ -47,51 +47,7 @@ export default function AboutPage() {
     // eslint-disable-next-line
   }, [workModalOpen, workModalIndex]);
 
-  // Swipe support for Before & After modal (mobile)
-  useEffect(() => {
-    if (typeof modalOpen !== "number") return;
-    let startX = 0;
-    const onTouchStart = (e) => {
-      startX = e.touches[0].clientX;
-    };
-    const onTouchEnd = (e) => {
-      const endX = e.changedTouches[0].clientX;
-      if (endX - startX > 40) prevImg();
-      if (startX - endX > 40) nextImg();
-    };
-    const modal = modalRef.current;
-    if (modal) {
-      modal.addEventListener("touchstart", onTouchStart);
-      modal.addEventListener("touchend", onTouchEnd);
-      return () => {
-        modal.removeEventListener("touchstart", onTouchStart);
-        modal.removeEventListener("touchend", onTouchEnd);
-      };
-    }
-  });
-
-  // Swipe support for Our Work modal (mobile)
-  useEffect(() => {
-    if (typeof workModalOpen !== "number") return;
-    let startX = 0;
-    const onTouchStart = (e) => {
-      startX = e.touches[0].clientX;
-    };
-    const onTouchEnd = (e) => {
-      const endX = e.changedTouches[0].clientX;
-      if (endX - startX > 40) prevWorkImg();
-      if (startX - endX > 40) nextWorkImg();
-    };
-    const modal = workModalRef.current;
-    if (modal) {
-      modal.addEventListener("touchstart", onTouchStart);
-      modal.addEventListener("touchend", onTouchEnd);
-      return () => {
-        modal.removeEventListener("touchstart", onTouchStart);
-        modal.removeEventListener("touchend", onTouchEnd);
-      };
-    }
-  });
+  // (NO SWIPE EFFECTS ON MOBILE ANYMORE)
 
   const openModal = (idx) => {
     if (idx === "kazim") {
@@ -160,7 +116,7 @@ export default function AboutPage() {
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
           <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
-            <img src={founderImg} alt="Kazim full" className="modal-image" />
+            <img src={founderImg} alt="Kazim full" className="modal-image" style={{ maxWidth: '85vw', maxHeight: '68vh' }} />
           </div>
         </div>
       )}
