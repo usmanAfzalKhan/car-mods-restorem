@@ -1,17 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import founderImg from "../assets/images/founder.jpeg";
 import beforeAfterImages from "../data/beforeAfterImages";
+import galleryImages from "../data/galleryImages";
 import "./AboutPage.css";
 
 export default function AboutPage() {
+  // Before & After Modal
   const [modalOpen, setModalOpen] = useState(false); // false | "kazim" | number
   const [modalIndex, setModalIndex] = useState(0);
   const modalRef = useRef();
 
-  // Keyboard controls (ESC, arrows)
+  // Our Work Modal
+  const [workModalOpen, setWorkModalOpen] = useState(false); // false | number
+  const [workModalIndex, setWorkModalIndex] = useState(0);
+  const workModalRef = useRef();
+
+  // Keyboard controls (ESC, arrows) for Before & After
   useEffect(() => {
     if (modalOpen === false) return;
-
     const handleKey = (e) => {
       if (modalOpen === false) return;
       if (e.key === "Escape") setModalOpen(false);
@@ -20,13 +26,28 @@ export default function AboutPage() {
         if (e.key === "ArrowLeft") prevImg();
       }
     };
-
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
     // eslint-disable-next-line
   }, [modalOpen, modalIndex]);
 
-  // Swipe support for gallery modal (mobile)
+  // Keyboard controls for Our Work gallery
+  useEffect(() => {
+    if (workModalOpen === false) return;
+    const handleKey = (e) => {
+      if (workModalOpen === false) return;
+      if (e.key === "Escape") setWorkModalOpen(false);
+      if (typeof workModalOpen === "number") {
+        if (e.key === "ArrowRight") nextWorkImg();
+        if (e.key === "ArrowLeft") prevWorkImg();
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+    // eslint-disable-next-line
+  }, [workModalOpen, workModalIndex]);
+
+  // Swipe support for Before & After modal (mobile)
   useEffect(() => {
     if (typeof modalOpen !== "number") return;
     let startX = 0;
@@ -39,6 +60,29 @@ export default function AboutPage() {
       if (startX - endX > 40) nextImg();
     };
     const modal = modalRef.current;
+    if (modal) {
+      modal.addEventListener("touchstart", onTouchStart);
+      modal.addEventListener("touchend", onTouchEnd);
+      return () => {
+        modal.removeEventListener("touchstart", onTouchStart);
+        modal.removeEventListener("touchend", onTouchEnd);
+      };
+    }
+  });
+
+  // Swipe support for Our Work modal (mobile)
+  useEffect(() => {
+    if (typeof workModalOpen !== "number") return;
+    let startX = 0;
+    const onTouchStart = (e) => {
+      startX = e.touches[0].clientX;
+    };
+    const onTouchEnd = (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (endX - startX > 40) prevWorkImg();
+      if (startX - endX > 40) nextWorkImg();
+    };
+    const modal = workModalRef.current;
     if (modal) {
       modal.addEventListener("touchstart", onTouchStart);
       modal.addEventListener("touchend", onTouchEnd);
@@ -62,6 +106,18 @@ export default function AboutPage() {
   const nextImg = () =>
     setModalIndex((i) =>
       i === beforeAfterImages.length - 1 ? 0 : i + 1
+    );
+
+  // Our Work gallery controls
+  const openWorkModal = (idx) => {
+    setWorkModalIndex(idx);
+    setWorkModalOpen(idx);
+  };
+  const prevWorkImg = () =>
+    setWorkModalIndex((i) => (i === 0 ? galleryImages.length - 1 : i - 1));
+  const nextWorkImg = () =>
+    setWorkModalIndex((i) =>
+      i === galleryImages.length - 1 ? 0 : i + 1
     );
 
   return (
@@ -88,6 +144,7 @@ export default function AboutPage() {
         Kazim, our founder and lead technician, brings over six years of specialized expertise in automotive enhancement. His meticulous approach—backed by deep technical mastery—ensures each customization, from advanced stereo installs to precision headlight restorations, is executed flawlessly.
       </div>
 
+      {/* BEFORE & AFTER GALLERY */}
       <h2 className="about-section-title">Before &amp; After Gallery</h2>
       <div className="about-gallery-instruction"><i>Tap any image to enlarge</i></div>
       <div className="before-after-gallery">
@@ -108,7 +165,7 @@ export default function AboutPage() {
         </div>
       )}
 
-      {/* Gallery Modal */}
+      {/* Gallery Modal for Before & After */}
       {typeof modalOpen === "number" && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
           <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
@@ -116,6 +173,29 @@ export default function AboutPage() {
             <button className="modal-nav prev" onClick={prevImg} aria-label="Previous">&#60;</button>
             <img src={beforeAfterImages[modalIndex].src} alt={`Before & After ${modalIndex + 1}`} className="modal-image" />
             <button className="modal-nav next" onClick={nextImg} aria-label="Next">&#62;</button>
+          </div>
+        </div>
+      )}
+
+      {/* OUR WORK GALLERY */}
+      <h2 className="about-section-title">Our Work</h2>
+      <div className="about-gallery-instruction"><i>Tap any image to enlarge</i></div>
+      <div className="before-after-gallery">
+        {galleryImages.map((img, i) => (
+          <div className="before-after-thumb" key={i} onClick={() => openWorkModal(i)}>
+            <img src={img.src} alt={`Our Work ${i + 1}`} />
+          </div>
+        ))}
+      </div>
+
+      {/* Gallery Modal for Our Work */}
+      {typeof workModalOpen === "number" && (
+        <div className="modal-overlay" onClick={() => setWorkModalOpen(false)}>
+          <div className="modal-content" ref={workModalRef} onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setWorkModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
+            <button className="modal-nav prev" onClick={prevWorkImg} aria-label="Previous">&#60;</button>
+            <img src={galleryImages[workModalIndex].src} alt={`Our Work ${workModalIndex + 1}`} className="modal-image" />
+            <button className="modal-nav next" onClick={nextWorkImg} aria-label="Next">&#62;</button>
           </div>
         </div>
       )}
