@@ -1,9 +1,15 @@
+import bnf1 from '../assets/images/bnf1.jpeg';
+import bnf2 from '../assets/images/bnf2.jpeg';
+import bnf3 from '../assets/images/bnf3.jpeg';
+import bnf4 from '../assets/images/bnf4.jpeg';
+import bnf5 from '../assets/images/bnf5.jpeg';
+
 const beforeAfterImages = [
-  { src: '/images/bnf1.jpeg', alt: 'Before & After 1' },
-  { src: '/images/bnf2.jpeg', alt: 'Before & After 2' },
-  { src: '/images/bnf3.jpeg', alt: 'Before & After 3' },
-  { src: '/images/bnf4.jpeg', alt: 'Before & After 4' },
-  { src: '/images/bnf5.jpeg', alt: 'Before & After 5' },
+  { src: bnf1 },
+  { src: bnf2 },
+  { src: bnf3 },
+  { src: bnf4 },
+  { src: bnf5 },
 ];
 
 export default beforeAfterImages;

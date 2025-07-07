@@ -1,62 +1,135 @@
-import React, { useState } from 'react';
-import beforeAfterImages from '../data/beforeAfterImages';
-import founderImg from '../assets/images/founder.jpeg';
-import './AboutPage.css';
+import React, { useState, useRef, useEffect } from "react";
+import founderImg from "../assets/images/founder.jpeg";
+import beforeAfterImages from "../data/beforeAfterImages";
+import "./AboutPage.css";
 
 export default function AboutPage() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalImg, setModalImg] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false); // false | "kazim" | number
+  const [modalIndex, setModalIndex] = useState(0);
+  const modalRef = useRef();
+  const focusTrap = useRef();
+
+  // Always focus the trap input for keyboard control
+  useEffect(() => {
+    if (modalOpen !== false && focusTrap.current) {
+      focusTrap.current.focus();
+    }
+  }, [modalOpen]);
+
+  // Keyboard controls (ESC, arrows)
+  const handleKey = (e) => {
+    if (modalOpen === false) return;
+    if (e.key === "Escape") setModalOpen(false);
+    if (typeof modalOpen === "number") {
+      if (e.key === "ArrowRight") nextImg();
+      if (e.key === "ArrowLeft") prevImg();
+    }
+  };
+
+  // Attach to hidden focus trap for consistent keyboard nav
+  useEffect(() => {
+    if (modalOpen === false) return;
+    const trap = focusTrap.current;
+    if (!trap) return;
+    trap.addEventListener("keydown", handleKey);
+    return () => trap.removeEventListener("keydown", handleKey);
+    // eslint-disable-next-line
+  }, [modalOpen, modalIndex]);
+
+  // Swipe support for gallery modal
+  useEffect(() => {
+    if (typeof modalOpen !== "number") return;
+    let startX = 0;
+    const onTouchStart = (e) => {
+      startX = e.touches[0].clientX;
+    };
+    const onTouchEnd = (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (endX - startX > 40) prevImg();
+      if (startX - endX > 40) nextImg();
+    };
+    const modal = modalRef.current;
+    if (modal) {
+      modal.addEventListener("touchstart", onTouchStart);
+      modal.addEventListener("touchend", onTouchEnd);
+      return () => {
+        modal.removeEventListener("touchstart", onTouchStart);
+        modal.removeEventListener("touchend", onTouchEnd);
+      };
+    }
+  });
+
+  const openModal = (idx) => {
+    if (idx === "kazim") {
+      setModalOpen("kazim");
+    } else {
+      setModalIndex(idx);
+      setModalOpen(idx); // Always set as number!
+    }
+  };
+  const prevImg = () =>
+    setModalIndex((i) => (i === 0 ? beforeAfterImages.length - 1 : i - 1));
+  const nextImg = () =>
+    setModalIndex((i) =>
+      i === beforeAfterImages.length - 1 ? 0 : i + 1
+    );
 
   return (
     <div className="about-page">
-      <h1 className="about-heading">About Restor.em</h1>
-      <p className="intro">
-        Restor.em delivers high-quality automotive restorations and customizations—blending advanced techniques with a commitment to transparency, speed, and exceptional results. Each project receives the same precision and pride, ensuring your vehicle is both functional and stunning.
-      </p>
+      <h1 className="about-main-title">About Restor.em</h1>
+      <div className="about-intro">
+        Restor.em is your trusted destination for high-end automotive customization, performance upgrades, and meticulous restoration. We blend passion with precision—offering advanced installations, modern tech, and full-spectrum detailing to elevate every aspect of your vehicle. <br /><br />
+        <span className="about-points">
+          Whether you’re seeking a head-turning upgrade, enhanced safety, or to simply revive your car’s original glory, our team delivers every project with integrity, expertise, and transparent pricing. Experience why car enthusiasts and everyday drivers alike trust Restor.em for exceptional results and a truly personalized service experience.
+        </span>
+      </div>
 
-      <ul className="features-list">
-        <li>Tailored restoration &amp; customization packages</li>
-        <li>High-grade materials and advanced techniques</li>
-        <li>Transparent pricing—no hidden costs</li>
-        <li>Swift turnaround with dedicated support</li>
-      </ul>
-
-      <h2 className="section-heading">Meet Kazim</h2>
+      <h2 className="about-section-title">Meet Kazim</h2>
       <div className="kazim-photo-container">
         <img
           src={founderImg}
           alt="Kazim, founder of Restor.em"
           className="kazim-photo"
-          onClick={() => { setModalOpen(true); setModalImg(founderImg); }}
+          onClick={() => setModalOpen("kazim")}
           style={{ cursor: "pointer" }}
         />
       </div>
-      <p className="bio">
+      <div className="kazim-bio">
         Kazim, our founder and lead technician, brings over six years of specialized expertise in automotive enhancement. His meticulous approach—backed by deep technical mastery—ensures each customization, from advanced stereo installs to precision headlight restorations, is executed flawlessly.
-      </p>
+      </div>
 
-      <h2 className="section-heading">Before &amp; After Gallery</h2>
-      <div className="gallery-caption">Tap any image to enlarge</div>
+      <h2 className="about-section-title">Before &amp; After Gallery</h2>
+      <div className="about-gallery-instruction"><i>Tap any image to enlarge</i></div>
       <div className="before-after-gallery">
         {beforeAfterImages.map((img, i) => (
-          <div
-            key={i}
-            className="before-after-thumb"
-            onClick={() => { setModalOpen(true); setModalImg(img.src); }}
-            tabIndex={0}
-            role="button"
-            aria-label={`View ${img.alt}`}
-          >
-            <img src={img.src} alt={img.alt} className="before-after-img" loading="lazy" />
+          <div className="before-after-thumb" key={i} onClick={() => openModal(i)}>
+            <img src={img.src} alt={`Before & After ${i + 1}`} />
           </div>
         ))}
       </div>
 
-      {modalOpen && (
+      {/* Founder Modal */}
+      {modalOpen === "kazim" && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setModalOpen(false)} aria-label="Close">&times;</button>
-            <img src={modalImg} alt="" className="modal-image" />
+          <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
+            {/* Hidden input for keyboard trap */}
+            <input ref={focusTrap} style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: 0 }} tabIndex={0} />
+            <button className="modal-close" onClick={() => setModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
+            <img src={founderImg} alt="Kazim full" className="modal-image" />
+          </div>
+        </div>
+      )}
+
+      {/* Gallery Modal */}
+      {typeof modalOpen === "number" && (
+        <div className="modal-overlay" onClick={() => setModalOpen(false)}>
+          <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
+            {/* Hidden input for keyboard trap */}
+            <input ref={focusTrap} style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: 0 }} tabIndex={0} />
+            <button className="modal-close" onClick={() => setModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
+            <button className="modal-nav prev" onClick={prevImg} aria-label="Previous">&#60;</button>
+            <img src={beforeAfterImages[modalIndex].src} alt={`Before & After ${modalIndex + 1}`} className="modal-image" />
+            <button className="modal-nav next" onClick={nextImg} aria-label="Next">&#62;</button>
           </div>
         </div>
       )}
