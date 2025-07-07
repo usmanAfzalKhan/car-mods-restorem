@@ -36,6 +36,7 @@ export default function ReviewsPage() {
       >
         Add a Review
       </button>
+      <div className="add-review-footer-gap"></div>
 
       {showForm && (
         <ReviewForm

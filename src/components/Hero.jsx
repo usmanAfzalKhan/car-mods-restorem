@@ -72,7 +72,7 @@ const slides = [
     imageUrl: backupCameraImg,
     title: 'Back Up Camera',
     subtitle: 'Reverse smarter. Park easier.',
-    button: { label: 'See Details', path: '/services/back-up-camera' }
+    button: { label: 'See Details', path: '/services/backup-camera' }
   },
 ];
 

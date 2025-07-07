@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ReviewForm.css';
 
 export default function ReviewForm({ onClose, onSubmit }) {
@@ -6,6 +6,24 @@ export default function ReviewForm({ onClose, onSubmit }) {
   const [rating, setRating] = useState('');
   const [text, setText] = useState('');
   const [errors, setErrors] = useState({ name: '', rating: '', text: '' });
+
+  const boxRef = useRef();
+
+  // ESC to close
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [onClose]);
+
+  // Overlay click to close
+  const handleOverlayClick = (e) => {
+    if (boxRef.current && !boxRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
 
   const validate = () => {
     const newErrors = { name: '', rating: '', text: '' };
@@ -30,8 +48,13 @@ export default function ReviewForm({ onClose, onSubmit }) {
   };
 
   return (
-    <div className="review-form-overlay">
-      <div className="review-form-box">
+    <div
+      className="review-form-overlay"
+      onMouseDown={handleOverlayClick}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="review-form-box" ref={boxRef} onMouseDown={e => e.stopPropagation()}>
         <button
           className="review-form-close"
           onClick={onClose}
@@ -41,43 +64,46 @@ export default function ReviewForm({ onClose, onSubmit }) {
         </button>
         <h2>Add Your Review</h2>
         <form onSubmit={handleSubmit} noValidate>
-          <label>
-            Your Name
+          <label className="review-form-label">
+            Your Name<span className="review-form-required">*</span>
             <input
               type="text"
               value={name}
               onChange={e => { setName(e.target.value); clearError('name'); }}
               placeholder="Enter your name"
+              required
             />
             {errors.name && <div className="error">{errors.name}</div>}
           </label>
 
-          <label>
-            Rating
+          <label className="review-form-label">
+            Rating<span className="review-form-required">*</span>
             <select
               value={rating}
               onChange={e => { setRating(e.target.value); clearError('rating'); }}
               aria-required="true"
+              required
             >
               <option value="" disabled>
                 Select a rating
               </option>
-              {[5,4,3,2,1].map(n => (
+              {[5, 4, 3, 2, 1].map(n => (
                 <option key={n} value={n}>
-                  {'★'.repeat(n) + '☆'.repeat(5-n)}
+                  {'★'.repeat(n) + '☆'.repeat(5 - n)}
                 </option>
               ))}
             </select>
             {errors.rating && <div className="error">{errors.rating}</div>}
           </label>
 
-          <label>
-            Review
+          <label className="review-form-label">
+            Review<span className="review-form-required">*</span>
             <textarea
               value={text}
               onChange={e => { setText(e.target.value); clearError('text'); }}
               rows="4"
               placeholder="Write your review here"
+              required
             />
             {errors.text && <div className="error">{errors.text}</div>}
           </label>

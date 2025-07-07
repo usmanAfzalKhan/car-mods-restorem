@@ -1,92 +1,134 @@
-/* src/pages/ReviewsPage.css */
-
 .reviews-page {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.1rem 1rem 1.1rem 1rem;
+  color: #f6f6f6;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  background: transparent;
 }
 
 .reviews-title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  color: #ffe082;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 2.2rem;
+  letter-spacing: 0.01em;
+  margin-top: 2.2rem;
 }
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.1rem;
 }
 
 .review-card {
-  background: #fff;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  background: rgba(25, 28, 31, 0.85);
+  border-radius: 1.2rem;
+  padding: 1.4rem 1.2rem 1.3rem 1.2rem;
+  box-shadow: 0 3px 28px #181b2015, 0 1.5px 7px #0007;
+  border: 1.8px solid #232735;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transition: box-shadow 0.18s, border 0.14s;
+}
+
+.review-card:hover,
+.review-card:focus {
+  box-shadow: 0 6px 38px #ffe08218, 0 2px 14px #181b2040;
+  border-color: #ffe08260;
 }
 
 .review-rating {
-  font-size: 1.25rem;
-  color: #f5a623; /* gold stars */
-  margin-bottom: 0.75rem;
+  font-size: 1.23rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.07em;
+}
+.star-filled {
+  color: #ffe082;
+  font-size: 1.28em;
+}
+.star-empty {
+  color: #4e4d45;
 }
 
 .review-text {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  line-height: 1.4;
+  font-size: 1.11rem;
+  margin-bottom: 1.1rem;
+  line-height: 1.65;
+  color: #ececf1;
+  font-style: italic;
+  text-shadow: 0 1.5px 7px #181b203a;
 }
 
 .review-author {
-  font-weight: bold;
-  font-size: 0.95rem;
-  color: #555;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: #ffe082d1;
   margin-top: auto;
+  letter-spacing: 0.01em;
 }
 
-/* Mobile tweaks */
-@media (max-width: 600px) {
-  .reviews-page {
-    padding: 1rem;
-  }
-  .reviews-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .review-card {
-    padding: 1rem;
-  }
-  .review-text {
-    font-size: 0.9rem;
-  }
-}
-
+/* Themed action button with GLOW on hover/focus */
 .add-review-button {
   display: block;
-  margin: 2rem auto 1rem;
-  padding: 0.75rem 1.5rem;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  margin: 1.2rem auto 0.4rem;
+  padding: 0.78rem 2.2rem;
+  background: #232735;
+  color: #ffe082;
+  border: 2px solid #ffe082;
+  border-radius: 13px;
+  font-size: 1.14rem;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 1.5px 10px #23273520;
+  text-shadow: none;
   cursor: pointer;
+  transition: box-shadow 0.16s, color 0.16s, border 0.16s;
 }
 
-.add-review-button:hover {
-  background: #0069d9;
+.add-review-button:hover,
+.add-review-button:focus {
+  /* NO background color change! Just glow */
+  box-shadow: 0 0 20px 2px #ffe08299, 0 3px 20px #23273544;
+  color: #ffe082;
+  border-color: #ffe082;
+  outline: none;
 }
 
-/* ensure grid & button look good on mobile */
 @media (max-width: 600px) {
+  .reviews-page {
+    padding: 0.8rem 0.3rem 0.5rem 0.3rem;
+  }
+  .reviews-title {
+    font-size: 1.38rem;
+    margin-bottom: 1.05rem;
+    margin-top: 1.5rem;
+  }
+  .reviews-grid {
+    gap: 0.7rem;
+  }
+  .review-card {
+    padding: 1rem 0.7rem 0.9rem 0.7rem;
+    border-radius: 0.82rem;
+    font-size: 0.97rem;
+  }
+  .review-text {
+    font-size: 0.98rem;
+    margin-bottom: 0.7rem;
+  }
+  .review-author {
+    font-size: 0.93rem;
+  }
   .add-review-button {
-    width: 90%;
-    padding: 0.75rem;
-    font-size: 0.95rem;
+    width: 94%;
+    padding: 0.78rem 0;
+    font-size: 1.01rem;
+    border-radius: 10px;
   }
 }
-

@@ -1,67 +1,171 @@
 .review-form-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.42);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 .review-form-box {
-  background: #fff;
-  border-radius: 8px;
-  padding: 1.5rem;
-  width: 90%;
-  max-width: 400px;
+  background: #17191c;
+  border-radius: 13px;
+  padding: 2.2rem 2.2rem 2rem 2.2rem;
+  max-width: 420px;
+  width: 97vw;
+  box-shadow: 0 4px 48px #00000045, 0 2px 6px #181b2040;
+  color: #f6f6f6;
+  border: 2.2px solid #ffe082;
   position: relative;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  margin: 0 10px;
 }
+
+@media (max-width: 600px) {
+  .review-form-box {
+    padding: 1.35rem 0.9rem 1.1rem 0.9rem;
+    max-width: 97vw;
+    min-width: 0;
+  }
+}
+
 .review-form-close {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.9rem;
+  right: 1.3rem;
   border: none;
   background: transparent;
-  font-size: 1.5rem;
+  color: #ffe082;
+  font-size: 1.8rem;
   cursor: pointer;
+  font-weight: 600;
+  transition: color 0.13s;
 }
+.review-form-close:hover,
+.review-form-close:focus {
+  color: #fff2c7;
+  outline: none;
+}
+
 .review-form-box h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.08rem;
   text-align: center;
+  color: #ffe082;
+  font-size: 1.38rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
-.review-form-box form label {
+
+.review-form-label {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.86rem;
   font-weight: 500;
+  color: #f6f6f6;
+  font-size: 1.06rem;
 }
-.review-form-box form input,
-.review-form-box form select,
-.review-form-box form textarea {
+
+.review-form-required {
+  color: #ff5050;
+  margin-left: 0.17em;
+  font-size: 1.12em;
+  vertical-align: super;
+}
+
+.review-form-box input,
+.review-form-box select,
+.review-form-box textarea {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 0.63rem 0.6rem;
+  margin-top: 0.22rem;
+  margin-bottom: 0.1rem;
+  border: 1.5px solid #2c2c32;
+  border-radius: 6px;
+  background: #101217;
+  color: #f6f6f6;
+  font-size: 1.02rem;
+  font-family: inherit;
+  transition: border-color 0.17s;
+  outline: none;
 }
+
+.review-form-box select {
+  color: #f6f6f6;
+}
+
+.review-form-box input:focus,
+.review-form-box select:focus,
+.review-form-box textarea:focus {
+  border-color: #ffe082;
+  outline: none;
+}
+
 .review-form-submit {
   width: 100%;
-  padding: 0.75rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  margin-top: 1.12rem;
+  margin-bottom: 0.1rem;
+  background: #191c1f;
+  color: #ffe082;
+  font-weight: 600;
+  border: 2px solid #ffe082;
+  border-radius: 12px;
+  font-size: 1.19rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 1.5px 14px #2327351a;
+  text-decoration: none;
+  text-align: center;
   cursor: pointer;
+  padding: 0.74em 0;
+  transition: box-shadow 0.17s, color 0.13s, background 0.13s, border 0.12s;
 }
+.review-form-submit:hover,
+.review-form-submit:focus {
+  box-shadow: 0 2px 18px #ffe08280;
+  outline: none;
+}
+
 .review-form-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
 .error {
   color: #d9534f;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+  margin-bottom: 0.1rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .review-form-box {
+    border-radius: 11px;
+    max-width: 97vw;
+    padding: 1.1rem 0.5rem 1.08rem 0.5rem;
+  }
+  .review-form-close {
+    top: 0.58rem;
+    right: 0.82rem;
+    font-size: 1.6rem;
+  }
+  .review-form-box h2 {
+    font-size: 1.09rem;
+  }
+  .review-form-submit {
+    font-size: 1.04rem;
+    padding: 0.68em 0;
+  }
+  .review-form-label {
+    font-size: 0.99rem;
+    margin-bottom: 0.72rem;
+  }
+}
+
+/* --- Gap between add button and footer --- */
+.add-review-footer-gap {
+  height: 2.2rem;
+}
+@media (max-width: 600px) {
+  .add-review-footer-gap {
+    height: 1.1rem;
+  }
 }
