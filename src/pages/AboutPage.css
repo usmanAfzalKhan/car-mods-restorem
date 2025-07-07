@@ -38,27 +38,36 @@
   justify-content: center;
   margin-bottom: 1.2rem;
 }
+
+/* FOUNDER IMAGE - BIGGEST YET + SMOOTH FADE */
 .kazim-photo {
-  width: 185px;
-  height: 185px;
+  width: 320px;
+  height: 320px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid #ffe082;
   box-shadow: 0 4px 32px #2226;
   margin: 0.4rem auto 0.5rem auto;
-  transition: transform 0.18s cubic-bezier(0.22,0.61,0.36,1);
+  transition: transform 0.18s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.18s;
+  background: #191b21;
+  animation: fadein-img 0.6s;
 }
 .kazim-photo:hover, .kazim-photo:active {
-  transform: scale(1.07);
+  transform: scale(1.09);
   box-shadow: 0 6px 48px #ffe08255;
 }
+@keyframes fadein-img {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Gallery instructions, gallery grid, modal, nav, etc. remain unchanged... */
 
 .about-gallery-instruction {
   color: #ffe082;
   font-size: 1rem;
   margin-bottom: 1.2rem;
 }
-
 .before-after-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -104,7 +113,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadein-modal 0.18s;
+  animation: fadein-modal 0.28s cubic-bezier(.35,1.41,.51,.92);
 }
 @keyframes fadein-modal {
   from { opacity: 0;}
@@ -124,8 +133,8 @@
 }
 .modal-image {
   display: block;
-  max-width: 70vw;
-  max-height: 76vh;
+  max-width: 85vw;
+  max-height: 68vh;
   width: auto;
   height: auto;
   border-radius: 12px;
@@ -185,20 +194,21 @@
   background: #ffd14a;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .modal-image {
-    max-width: 92vw;
-    max-height: 60vh;
-  }
-  .modal-nav.prev { left: 12px; }
-  .modal-nav.next { right: 12px; }
+/* --- RESPONSIVE --- */
+@media (max-width: 1100px) {
+  .kazim-photo { width: 210px; height: 210px; }
 }
 @media (max-width: 700px) {
-  .kazim-photo { width: 125px; height: 125px; }
+  .kazim-photo { width: 140px; height: 140px; }
   .modal-image { max-width: 92vw; max-height: 46vh; }
   .modal-nav.prev { left: 3px;}
   .modal-nav.next { right: 3px;}
+}
+@media (max-width: 500px) {
+  .kazim-photo { width: 110px; height: 110px; }
+}
+@media (max-width: 375px) {
+  .kazim-photo { width: 90px; height: 90px; }
 }
 @media (max-width: 600px) {
   .about-main-title, .about-section-title {
@@ -210,7 +220,6 @@
     line-height: 1.65;
     padding: 0 0.15rem;
   }
-  .kazim-photo { width: 108px; height: 108px; }
   .before-after-gallery {
     gap: 0.73rem;
   }
@@ -221,7 +230,4 @@
     max-width: 96vw;
     max-height: 38vh;
   }
-}
-@media (max-width: 375px) {
-  .kazim-photo { width: 84px; height: 84px; }
 }
