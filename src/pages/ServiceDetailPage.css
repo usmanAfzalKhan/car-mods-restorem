@@ -16,7 +16,6 @@
   flex-direction: column;
   align-items: center;
   background: transparent;
-  /* Add a bit of top margin for gap from header */
   margin-top: 1.3rem;
 }
 
@@ -54,7 +53,6 @@
   width: 100%;
 }
 
-/* What's Included */
 .what-included {
   width: 100%;
   text-align: center;
@@ -85,7 +83,6 @@
   list-style: disc inside;
 }
 
-/* Pricing Box */
 .price-section {
   width: 100%;
   margin: 0.7rem 0 1rem 0;
@@ -123,7 +120,6 @@
   margin-bottom: 0.63rem;
 }
 
-/* Price highlight */
 .highlight-price {
   font-size: 1.15rem;
   font-weight: 700;
@@ -218,6 +214,51 @@
   box-shadow: none;
 }
 
+/* ========== PROS & CONS SECTIONS ========== */
+.pros-cons-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  margin-bottom: 1.6rem;
+}
+
+.pros-cons-shared {
+  background: #181b22;
+  border: 1.2px solid #ffe08277;
+  border-radius: 12px;
+  box-shadow: 0 2px 18px #181b2234, 0 1px 7px #ffe0820a;
+  padding: 1.1rem 0.8rem 1.18rem 0.8rem;
+  color: #faf7e7;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pros-section h2, .cons-section h2 {
+  color: #ffe082;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.pros-cons-shared ul {
+  padding-left: 1em;
+  margin: 0 auto;
+  text-align: left;
+  display: inline-block;
+}
+
+.pros-cons-shared li {
+  margin-bottom: 0.22rem;
+  font-size: 0.97rem;
+  color: #faf7e7;
+  line-height: 1.55;
+  font-weight: 500;
+  list-style: disc inside;
+}
+
 /* Responsive - side by side row on desktop */
 @media (min-width: 900px) {
   .service-detail-center {
@@ -258,9 +299,23 @@
     max-width: 360px;
     border-radius: 16px;
   }
+
+  /* Side-by-side pros/cons */
+  .pros-cons-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2.4rem;
+    width: 100%;
+  }
+  .pros-cons-shared {
+    min-width: 200px;
+    max-width: 340px;
+    margin: 0;
+  }
 }
 
-/* Extra mobile tweaks - LARGE IMAGE BUT NOT TOO LARGE ON MOBILE */
+/* Extra mobile tweaks */
 @media (max-width: 600px) {
   .service-detail-center {
     padding: 0.9rem 0.04rem 0.9rem 0.04rem;
@@ -311,5 +366,15 @@
     padding: 1rem;
     font-size: 0.97rem;
     border-radius: 6px;
+  }
+
+  .pros-cons-row {
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 1.1rem;
+  }
+  .pros-cons-shared {
+    max-width: 99vw;
+    min-width: 0;
   }
 }

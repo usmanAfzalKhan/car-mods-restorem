@@ -32,9 +32,28 @@ export default function ServiceDetailPage() {
           <div className="price-section price-boxed">
             <h2 className="price-title">Pricing</h2>
             <div className="price-desc highlight-price">
-              Starting at <span className="price-big">$</span>
+              Starting at <span className="price-big">${service.price}</span>
             </div>
             <button className="book-button">Book Now</button>
+          </div>
+        </div>
+
+        <div className="pros-cons-row">
+          <div className="pros-section pros-cons-shared">
+            <h2>Pros</h2>
+            <ul>
+              {service.pros.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="cons-section pros-cons-shared">
+            <h2>Cons</h2>
+            <ul>
+              {service.cons.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
           </div>
         </div>
 
