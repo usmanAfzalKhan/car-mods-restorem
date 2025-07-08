@@ -60,9 +60,7 @@ export default function AboutPage() {
   const prevImg = () =>
     setModalIndex((i) => (i === 0 ? beforeAfterImages.length - 1 : i - 1));
   const nextImg = () =>
-    setModalIndex((i) =>
-      i === beforeAfterImages.length - 1 ? 0 : i + 1
-    );
+    setModalIndex((i) => (i === beforeAfterImages.length - 1 ? 0 : i + 1));
 
   // Our Work gallery controls
   const openWorkModal = (idx) => {
@@ -72,17 +70,24 @@ export default function AboutPage() {
   const prevWorkImg = () =>
     setWorkModalIndex((i) => (i === 0 ? galleryImages.length - 1 : i - 1));
   const nextWorkImg = () =>
-    setWorkModalIndex((i) =>
-      i === galleryImages.length - 1 ? 0 : i + 1
-    );
+    setWorkModalIndex((i) => (i === galleryImages.length - 1 ? 0 : i + 1));
 
   return (
     <div className="about-page">
       <h1 className="about-main-title">About Restor.em</h1>
       <div className="about-intro">
-        Restor.em is your trusted destination for high-end automotive customization, performance upgrades, and meticulous restoration. We blend passion with precision—offering advanced installations, modern tech, and full-spectrum detailing to elevate every aspect of your vehicle. <br /><br />
+        Restor.em is your trusted destination for high-end automotive
+        customization, performance upgrades, and meticulous restoration. We
+        blend passion with precision—offering advanced installations, modern
+        tech, and full-spectrum detailing to elevate every aspect of your
+        vehicle. <br />
+        <br />
         <span className="about-points">
-          Whether you’re seeking a head-turning upgrade, enhanced safety, or to simply revive your car’s original glory, our team delivers every project with integrity, expertise, and transparent pricing. Experience why car enthusiasts and everyday drivers alike trust Restor.em for exceptional results and a truly personalized service experience.
+          Whether you’re seeking a head-turning upgrade, enhanced safety, or to
+          simply revive your car’s original glory, our team delivers every
+          project with integrity, expertise, and transparent pricing. Experience
+          why car enthusiasts and everyday drivers alike trust Restor.em for
+          exceptional results and a truly personalized service experience.
         </span>
       </div>
 
@@ -97,15 +102,27 @@ export default function AboutPage() {
         />
       </div>
       <div className="kazim-bio">
-        Kazim, our founder and lead technician, brings over six years of specialized expertise in automotive enhancement. His meticulous approach—backed by deep technical mastery—ensures each customization, from advanced stereo installs to precision headlight restorations, is executed flawlessly.
+        Kazim, is a graduate in Electro Mechanical Engineering. He brings over
+        six years of expertise in automotive enhancements. His meticulous
+        approach and attention to detail ensures each customization,
+        installation and upgrade is flawless. His work is renowned with over
+        1000+ mods including; dash camera installations, reverse camera
+        installations, blind spot monitoring (BSM), parking sensor
+        installations, etcetera.
       </div>
 
       {/* BEFORE & AFTER GALLERY */}
       <h2 className="about-section-title">Before &amp; After Gallery</h2>
-      <div className="about-gallery-instruction"><i>Tap any image to enlarge</i></div>
+      <div className="about-gallery-instruction">
+        <i>Tap any image to enlarge</i>
+      </div>
       <div className="before-after-gallery">
         {beforeAfterImages.map((img, i) => (
-          <div className="before-after-thumb" key={i} onClick={() => openModal(i)}>
+          <div
+            className="before-after-thumb"
+            key={i}
+            onClick={() => openModal(i)}
+          >
             <img src={img.src} alt={`Before & After ${i + 1}`} />
           </div>
         ))}
@@ -114,9 +131,25 @@ export default function AboutPage() {
       {/* Founder Modal */}
       {modalOpen === "kazim" && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
-          <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
-            <img src={founderImg} alt="Kazim full" className="modal-image" style={{ maxWidth: '85vw', maxHeight: '68vh' }} />
+          <div
+            className="modal-content"
+            ref={modalRef}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={() => setModalOpen(false)}
+              tabIndex={0}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <img
+              src={founderImg}
+              alt="Kazim full"
+              className="modal-image"
+              style={{ maxWidth: "85vw", maxHeight: "68vh" }}
+            />
           </div>
         </div>
       )}
@@ -124,21 +157,54 @@ export default function AboutPage() {
       {/* Gallery Modal for Before & After */}
       {typeof modalOpen === "number" && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
-          <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
-            <button className="modal-nav prev" onClick={prevImg} aria-label="Previous">&#60;</button>
-            <img src={beforeAfterImages[modalIndex].src} alt={`Before & After ${modalIndex + 1}`} className="modal-image" />
-            <button className="modal-nav next" onClick={nextImg} aria-label="Next">&#62;</button>
+          <div
+            className="modal-content"
+            ref={modalRef}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={() => setModalOpen(false)}
+              tabIndex={0}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <button
+              className="modal-nav prev"
+              onClick={prevImg}
+              aria-label="Previous"
+            >
+              &#60;
+            </button>
+            <img
+              src={beforeAfterImages[modalIndex].src}
+              alt={`Before & After ${modalIndex + 1}`}
+              className="modal-image"
+            />
+            <button
+              className="modal-nav next"
+              onClick={nextImg}
+              aria-label="Next"
+            >
+              &#62;
+            </button>
           </div>
         </div>
       )}
 
       {/* OUR WORK GALLERY */}
       <h2 className="about-section-title">Our Work</h2>
-      <div className="about-gallery-instruction"><i>Tap any image to enlarge</i></div>
+      <div className="about-gallery-instruction">
+        <i>Tap any image to enlarge</i>
+      </div>
       <div className="before-after-gallery">
         {galleryImages.map((img, i) => (
-          <div className="before-after-thumb" key={i} onClick={() => openWorkModal(i)}>
+          <div
+            className="before-after-thumb"
+            key={i}
+            onClick={() => openWorkModal(i)}
+          >
             <img src={img.src} alt={`Our Work ${i + 1}`} />
           </div>
         ))}
@@ -147,11 +213,38 @@ export default function AboutPage() {
       {/* Gallery Modal for Our Work */}
       {typeof workModalOpen === "number" && (
         <div className="modal-overlay" onClick={() => setWorkModalOpen(false)}>
-          <div className="modal-content" ref={workModalRef} onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setWorkModalOpen(false)} tabIndex={0} aria-label="Close">&times;</button>
-            <button className="modal-nav prev" onClick={prevWorkImg} aria-label="Previous">&#60;</button>
-            <img src={galleryImages[workModalIndex].src} alt={`Our Work ${workModalIndex + 1}`} className="modal-image" />
-            <button className="modal-nav next" onClick={nextWorkImg} aria-label="Next">&#62;</button>
+          <div
+            className="modal-content"
+            ref={workModalRef}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={() => setWorkModalOpen(false)}
+              tabIndex={0}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <button
+              className="modal-nav prev"
+              onClick={prevWorkImg}
+              aria-label="Previous"
+            >
+              &#60;
+            </button>
+            <img
+              src={galleryImages[workModalIndex].src}
+              alt={`Our Work ${workModalIndex + 1}`}
+              className="modal-image"
+            />
+            <button
+              className="modal-nav next"
+              onClick={nextWorkImg}
+              aria-label="Next"
+            >
+              &#62;
+            </button>
           </div>
         </div>
       )}

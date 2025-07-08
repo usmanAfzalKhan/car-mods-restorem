@@ -12,6 +12,25 @@ export default function ServiceDetailPage() {
     return <p className="not-found">Service not found.</p>;
   }
 
+  // Format price for display
+  function renderPrice(price) {
+    if (typeof price === "number") {
+      return <span className="price-big">${price}</span>;
+    }
+    // For range: $80–$300
+    if (typeof price === "string" && price.includes("$")) {
+      const match = price.match(/(\$[\d]+)(–\$?[\d]+)/);
+      if (match) {
+        return (
+          <>
+            <span className="price-big">{match[1]}</span>{match[2]}
+          </>
+        );
+      }
+    }
+    return <span className="price-big">{price}</span>;
+  }
+
   return (
     <div className="service-detail-page">
       <div className="service-detail-center">
@@ -32,25 +51,18 @@ export default function ServiceDetailPage() {
           <div className="price-section price-boxed">
             <h2 className="price-title">Pricing</h2>
             <div className="price-desc highlight-price">
-              Starting at <span className="price-big">${service.price}</span>
+              Starting from{renderPrice(service.price)}
             </div>
             <button className="book-button">Book Now</button>
           </div>
         </div>
 
-        <div className="pros-cons-row">
-          <div className="pros-section pros-cons-shared">
+        {/* Pros section */}
+        <div className="detail-row" style={{ marginTop: "0.9rem" }}>
+          <div className="what-included" style={{ width: "100%" }}>
             <h2>Pros</h2>
             <ul>
               {service.pros.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="cons-section pros-cons-shared">
-            <h2>Cons</h2>
-            <ul>
-              {service.cons.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
