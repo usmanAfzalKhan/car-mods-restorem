@@ -101,6 +101,23 @@
   outline: none;
 }
 
+/* Thank-you message styling */
+.thank-you-message {
+  display: block;
+  margin: 1.2rem auto;
+  padding: 0.78rem 2.2rem;
+  background: #232735;
+  color: #ffe082;
+  border: 2px solid #ffe082;
+  border-radius: 13px;
+  font-size: 1.14rem;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 1.5px 10px #23273520;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .reviews-page {
     padding: 0.8rem 0.3rem 0.5rem 0.3rem;
@@ -126,6 +143,12 @@
     font-size: 0.93rem;
   }
   .add-review-button {
+    width: 94%;
+    padding: 0.78rem 0;
+    font-size: 1.01rem;
+    border-radius: 10px;
+  }
+  .thank-you-message {
     width: 94%;
     padding: 0.78rem 0;
     font-size: 1.01rem;

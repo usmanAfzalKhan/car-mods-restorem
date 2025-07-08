@@ -2,26 +2,38 @@
 export const reviews = [
   {
     id: 1,
-    name: 'Alex R.',
+    name: 'Navdeep Singh',
     rating: 5,
-    text: 'Fantastic service! My headlights look brand new and the team was super professional.',
+    text: 'Restor.em did a perfect job on my headlights. Service was quick and super friendly!',
   },
   {
     id: 2,
-    name: 'Morgan S.',
+    name: 'Sana Ahmed',
     rating: 4,
-    text: 'Great install on my new stereo. Only wish the Bluetooth setup was a bit smoother.',
+    text: 'Really happy with my new Android stereo. Tech explained all the features in detail.',
   },
   {
     id: 3,
-    name: 'Jamie K.',
+    name: 'Jaspreet Kaur',
     rating: 5,
-    text: 'Underglow kit turned heads everywhere—I couldn’t be happier with the results!',
+    text: 'The ambient lighting upgrade totally changed my car’s vibe—absolutely love it!',
   },
   {
     id: 4,
-    name: 'Taylor P.',
+    name: 'Harsh Patel',
     rating: 5,
-    text: 'Ambient lighting makes my car feel so much more premium. Highly recommend!',
+    text: 'They installed parking sensors and now parallel parking is actually stress-free.',
   },
+  {
+    id: 5,
+    name: 'Kiran Desai',
+    rating: 4,
+    text: 'Blindspot monitor works great. The shop is professional and prices are reasonable.',
+  },
+  {
+    id: 6,
+    name: 'Abdullah Khan',
+    rating: 5,
+    text: 'Backup camera installation was super clean. Everything works perfectly. Highly recommend!',
+  }
 ];

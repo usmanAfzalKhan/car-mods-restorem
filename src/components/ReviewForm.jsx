@@ -6,20 +6,17 @@ export default function ReviewForm({ onClose, onSubmit }) {
   const [rating, setRating] = useState('');
   const [text, setText] = useState('');
   const [errors, setErrors] = useState({ name: '', rating: '', text: '' });
-
   const boxRef = useRef();
 
   // ESC to close
   useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
+    const handleKey = e => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [onClose]);
 
-  // Overlay click to close
-  const handleOverlayClick = (e) => {
+  // click outside to close
+  const handleOverlayClick = e => {
     if (boxRef.current && !boxRef.current.contains(e.target)) {
       onClose();
     }
@@ -34,17 +31,15 @@ export default function ReviewForm({ onClose, onSubmit }) {
     return !newErrors.name && !newErrors.rating && !newErrors.text;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (!validate()) return;
     onSubmit({ name: name.trim(), rating: Number(rating), text: text.trim() });
     onClose();
   };
 
-  const clearError = (field) => {
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
-    }
+  const clearError = field => {
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: '' }));
   };
 
   return (
@@ -54,14 +49,17 @@ export default function ReviewForm({ onClose, onSubmit }) {
       role="dialog"
       aria-modal="true"
     >
-      <div className="review-form-box" ref={boxRef} onMouseDown={e => e.stopPropagation()}>
+      <div
+        className="review-form-box"
+        ref={boxRef}
+        onMouseDown={e => e.stopPropagation()}
+      >
         <button
           className="review-form-close"
           onClick={onClose}
           aria-label="Close review form"
-        >
-          ×
-        </button>
+        >×</button>
+
         <h2>Add Your Review</h2>
         <form onSubmit={handleSubmit} noValidate>
           <label className="review-form-label">
@@ -81,13 +79,10 @@ export default function ReviewForm({ onClose, onSubmit }) {
             <select
               value={rating}
               onChange={e => { setRating(e.target.value); clearError('rating'); }}
-              aria-required="true"
               required
             >
-              <option value="" disabled>
-                Select a rating
-              </option>
-              {[5, 4, 3, 2, 1].map(n => (
+              <option value="" disabled>Select a rating</option>
+              {[5,4,3,2,1].map(n => (
                 <option key={n} value={n}>
                   {'★'.repeat(n) + '☆'.repeat(5 - n)}
                 </option>
@@ -108,10 +103,7 @@ export default function ReviewForm({ onClose, onSubmit }) {
             {errors.text && <div className="error">{errors.text}</div>}
           </label>
 
-          <button
-            type="submit"
-            className="review-form-submit"
-          >
+          <button type="submit" className="review-form-submit">
             Submit Review
           </button>
         </form>

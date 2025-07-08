@@ -1,4 +1,6 @@
+// src/firebase.js
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -9,4 +11,9 @@ const config = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-initializeApp(config);
+// src/firebase.js
+const app = initializeApp(config);
+console.log("🔔 Firebase initialized on project:", app.options.projectId);
+
+
+export const db = getFirestore(app);
