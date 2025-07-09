@@ -132,7 +132,7 @@ export default function ContactPage() {
           TikTok
         </a>{" "}
         for the latest updates and direct messaging. Prefer to call? Contact us at{" "}
-        <a href="tel:6475684532" className="gold-link">647-568-4532</a>.
+        <a href="tel:6477089050" className="gold-link">647-708-9050</a>.
       </div>
 
       <h1 className="contact-title">Book an Appointment</h1>
@@ -160,7 +160,7 @@ export default function ContactPage() {
             value={form.phone}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="647-555-1234"
+            placeholder="647-708-9050"
             required
           />
           {errors.phone && <div className="form-error">{errors.phone}</div>}
