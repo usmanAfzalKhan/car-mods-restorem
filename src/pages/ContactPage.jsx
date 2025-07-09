@@ -1,158 +1,234 @@
-// src/pages/ContactPage.jsx
-import React, { useState } from 'react';
-import './ContactPage.css';
+import React, { useState } from "react";
+import logoImg from "../assets/images/logo.png";
+import "./ContactPage.css";
 
 export default function ContactPage() {
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    date: "",
+    services: [],
+    message: "",
+  });
+  const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setSubmitError("");
-    setSubmitSuccess(false);
-
-    // Gather data from your form fields
-    const formData = {
-      name: e.target.name.value,
-      phone: e.target.phone.value,
-      date: e.target.date.value,
-      services: Array.from(e.target['services'])
-        .filter(input => input.checked)
-        .map(input => input.value),
-      message: e.target.message.value,
-    };
-
-    try {
-      const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbz5q1kotYOss1CWuZgfFIQJoMYERrwFckT3avI85tfzUEIEVRw_X3P9aBgmPs7Q54JC/exec",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
-      const result = await res.json();
-      if (result.success) {
-        setSubmitSuccess(true);
-        e.target.reset();
-      } else {
-        setSubmitError("There was an error sending your message. Please try again.");
-      }
-    } catch (err) {
-      setSubmitError("Network error. Please try again later.");
+  // Handle field changes (checkbox logic for multi-select)
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (name === "services") {
+      setForm((f) => ({
+        ...f,
+        services: checked
+          ? [...f.services, value]
+          : f.services.filter((s) => s !== value),
+      }));
+    } else {
+      setForm((f) => ({ ...f, [name]: value }));
     }
-    setSubmitting(false);
   };
 
-  // Minimum date (today) for Preferred Date field
-  const today = new Date().toISOString().split("T")[0];
+  // Format phone number on blur (Canadian 10-digit)
+  const formatPhone = (num) => {
+    let digits = num.replace(/\D/g, "").slice(0, 10);
+    if (digits.length < 10) return digits;
+    return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  };
+
+  const handleBlur = (e) => {
+    if (e.target.name === "phone") {
+      setForm((f) => ({ ...f, phone: formatPhone(f.phone) }));
+    }
+  };
+
+  // Validation for required fields
+  const validate = () => {
+    let newErrors = {};
+    if (!form.name.trim()) newErrors.name = "Name is required.";
+    if (!form.phone.match(/^\d{3}-\d{3}-\d{4}$/))
+      newErrors.phone =
+        "Enter a valid Canadian phone number (e.g., 647-555-1234).";
+    if (!form.date) newErrors.date = "Preferred date is required.";
+    if (!form.services.length)
+      newErrors.services = "Select at least one service.";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle form submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch("/.netlify/functions/sendContact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSuccess(true);
+      } else {
+        const err = await res.json();
+        alert("There was an error: " + (err.error || "Please try again."));
+      }
+    } catch (err) {
+      alert("Network error, please try again later.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (success) {
+    return (
+      <div className="contact-success">
+        <img
+          src={logoImg}
+          alt="Restor.em logo"
+          style={{ width: 120, margin: "1.2rem auto" }}
+        />
+        <h2>Thank you for your submission!</h2>
+        <p>
+          We appreciate your interest. Our team will contact you within 2-3
+          business days.
+        </p>
+      </div>
+    );
+  }
+
+  // Service options for checkboxes
+  const serviceOptions = [
+    "Headlight Restoration",
+    "Android Stereos",
+    "Parking Sensors",
+    "Blindspot Monitor",
+    "LED Lighting",
+    "Ambient Lighting",
+    "Underglow",
+    "Back Up Camera",
+  ];
+
+  // restrict date input
+  const minDate = new Date().toISOString().split("T")[0];
 
   return (
     <div className="contact-page">
-      <p className="contact-intro">
-        You can also reach us on
-        <a href="https://instagram.com/" className="contact-link" target="_blank" rel="noopener noreferrer"> Instagram</a>
-        , <a href="https://facebook.com/" className="contact-link" target="_blank" rel="noopener noreferrer"> Facebook</a>
-        , or <a href="https://tiktok.com/" className="contact-link" target="_blank" rel="noopener noreferrer"> TikTok</a>
-        for the latest updates and direct messaging. Prefer to call? Contact us at <span className="contact-link">647-568-4532</span>.
-      </p>
-      <h1>Book an Appointment</h1>
-      <form className="contact-form" noValidate onSubmit={handleSubmit}>
+      <div className="contact-intro">
+        You can also reach us on{" "}
+        <a
+          href="https://instagram.com/"
+          className="contact-link only-gold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+        ,{" "}
+        <a
+          href="https://facebook.com/"
+          className="contact-link only-gold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook
+        </a>
+        , or{" "}
+        <a
+          href="https://tiktok.com/"
+          className="contact-link only-gold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TikTok
+        </a>{" "}
+        for the latest updates and direct messaging. Prefer to call? Contact us
+        at{" "}
+        <a href="tel:6475684532" className="contact-link only-gold">
+          647-568-4532
+        </a>
+        .
+      </div>
+
+      <h1 className="contact-main-title">Book an Appointment</h1>
+      <form className="contact-form" onSubmit={handleSubmit} noValidate>
         <div className="form-group">
-          <label htmlFor="name" className="form-label">Name*</label>
+          <label className="form-label">Name*</label>
           <input
-            type="text"
-            id="name"
             name="name"
             className="form-input"
-            placeholder="Your full name"
+            value={form.name}
+            onChange={handleChange}
             required
+            maxLength={50}
+            autoComplete="off"
           />
+          {errors.name && <div className="form-error">{errors.name}</div>}
         </div>
-
         <div className="form-group">
-          <label htmlFor="phone" className="form-label">Phone Number*</label>
+          <label className="form-label">Phone Number*</label>
           <input
-            type="tel"
-            id="phone"
             name="phone"
             className="form-input"
-            placeholder="+1 234-567-8901"
+            value={form.phone}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder="647-555-1234"
             required
+            maxLength={12}
+            autoComplete="off"
+            inputMode="numeric"
           />
+          {errors.phone && <div className="form-error">{errors.phone}</div>}
         </div>
-
         <div className="form-group">
-          <label htmlFor="date" className="form-label">Preferred Date*</label>
+          <label className="form-label">Preferred Date*</label>
           <input
             type="date"
-            id="date"
             name="date"
             className="form-input"
-            min={today}
+            value={form.date}
+            onChange={handleChange}
+            min={minDate}
             required
           />
+          {errors.date && <div className="form-error">{errors.date}</div>}
         </div>
-
         <div className="form-group">
-          <span className="form-label">Type of Service* <span style={{fontWeight:400, fontSize:"0.94em"}}>(Select all services that apply)</span></span>
+          <label className="form-label">
+            Type of Service* (Select all that apply)
+          </label>
           <div className="services-checkbox-group">
-            <label>
-              <input type="checkbox" name="services" value="Headlight Restoration" />
-              Headlight Restoration
-            </label>
-            <label>
-              <input type="checkbox" name="services" value="Android Stereos" />
-              Android Stereos
-            </label>
-            <label>
-              <input type="checkbox" name="services" value="Parking Sensors" />
-              Parking Sensors
-            </label>
-            <label>
-              <input type="checkbox" name="services" value="Blindspot Monitor" />
-              Blindspot Monitor
-            </label>
-            <label>
-              <input type="checkbox" name="services" value="LED Lighting" />
-              LED Lighting
-            </label>
-            <label>
-              <input type="checkbox" name="services" value="Ambient Lighting" />
-              Ambient Lighting
-            </label>
-            <label>
-              <input type="checkbox" name="services" value="Underglow" />
-              Underglow
-            </label>
-            <label>
-              <input type="checkbox" name="services" value="Back Up Camera" />
-              Back Up Camera
-            </label>
+            {serviceOptions.map((opt) => (
+              <label key={opt} className="checkbox-label">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value={opt}
+                  checked={form.services.includes(opt)}
+                  onChange={handleChange}
+                />{" "}
+                {opt}
+              </label>
+            ))}
           </div>
+          {errors.services && (
+            <div className="form-error">{errors.services}</div>
+          )}
         </div>
-
         <div className="form-group">
-          <label htmlFor="message" className="form-label">Additional Message</label>
+          <label className="form-label">Additional Message</label>
           <textarea
-            id="message"
             name="message"
             className="form-textarea"
-            rows="4"
+            value={form.message}
+            onChange={handleChange}
+            rows={4}
           />
         </div>
-
-        <button type="submit" className="submit-button" disabled={submitting}>
-          {submitting ? "Sending..." : "Submit"}
+        <button className="submit-button" type="submit" disabled={submitting}>
+          {submitting ? "Submitting..." : "Submit"}
         </button>
-        {submitSuccess && (
-          <div className="form-success">Your message has been sent! Thank you.</div>
-        )}
-        {submitError && (
-          <div className="form-error">{submitError}</div>
-        )}
       </form>
     </div>
   );

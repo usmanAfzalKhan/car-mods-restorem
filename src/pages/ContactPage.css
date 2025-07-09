@@ -14,20 +14,29 @@
   font-weight: 400;
 }
 
-.contact-intro .contact-link {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0 2px;
-  border-radius: 7px;
-  transition: background 0.15s;
-  background: none;
-  cursor: pointer;
+/* GOLDEN HYPERLINK STYLE FOR IG/FB/TT/PHONE */
+.contact-link.only-gold,
+.contact-link.only-gold:visited,
+.contact-link.only-gold:active {
+  color: #ffe082 !important;
+  text-decoration: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-weight: 700;
+  transition: color 0.15s;
+}
+.contact-link.only-gold:hover,
+.contact-link.only-gold:focus {
+  color: #fffde2 !important;
+  text-decoration: underline !important;
+  background: none !important;
 }
 
 h1 {
   text-align: center;
-  color: #ffe082;
+  color: #ffe082; /* Gold color to match FAQ title */
   margin: 1.4rem auto 2.5rem auto;
   font-size: 2.32rem;
   font-weight: 800;
@@ -82,27 +91,27 @@ h1 {
 
 /* --- Type of Service Checkboxes --- */
 .services-checkbox-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 2.3rem; /* vertical and horizontal gap */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 2.3rem; /* vertical then horizontal gap */
   margin-top: 0.6rem;
   margin-bottom: 0.4rem;
-  padding-left: 0.1rem;
-  align-items: flex-start;
+  align-items: start;
+  justify-items: start;
+  width: 100%;
 }
 
 .services-checkbox-group label {
   display: flex;
   align-items: center;
   gap: 0.47em;
-  min-width: 210px;
   font-size: 1.08rem;
   color: #ececf1;
   font-weight: 500;
-  margin-bottom: 0.3rem;
   cursor: pointer;
   user-select: none;
   background: none;
+  margin-bottom: 0.15rem;
 }
 
 .services-checkbox-group input[type="checkbox"] {
@@ -112,15 +121,16 @@ h1 {
   margin-right: 0.39em;
 }
 
+/* On mobile: single column, bigger tap area */
 @media (max-width: 700px) {
   .services-checkbox-group {
-    flex-direction: column;
-    gap: 0.18rem 0;
+    grid-template-columns: 1fr;
+    gap: 0.22rem 0;
     padding-left: 0;
   }
   .services-checkbox-group label {
-    min-width: 0;
-    font-size: 1.03rem;
+    font-size: 1.02rem;
+    margin-bottom: 0.09rem;
   }
 }
 
@@ -188,9 +198,37 @@ h1 {
   box-shadow: 0 1px 10px #b7373730;
 }
 
-/* Responsive adjustments */
+/* Submission Success Page */
+.contact-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2.2rem auto 3rem auto;
+  max-width: 430px;
+  background: #232735;
+  border-radius: 18px;
+  box-shadow: 0 4px 34px #191c2029, 0 2px 10px #23273522;
+  padding: 2.4rem 1.6rem 2.7rem 1.6rem;
+  color: #fff;
+  text-align: center;
+}
+.contact-success h2 {
+  color: #ffe082;
+  margin-bottom: 1.1rem;
+  margin-top: 0.6rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.contact-success p {
+  font-size: 1.06rem;
+  color: #fffde2;
+}
+
 @media (max-width: 700px) {
-  .contact-form {
+  .contact-form,
+  .contact-success {
     padding: 1.15rem 0.9rem 1.2rem 0.9rem;
     max-width: 98vw;
   }
