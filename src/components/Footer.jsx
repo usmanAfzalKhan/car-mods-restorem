@@ -35,8 +35,8 @@ export default function Footer() {
         Engineered for performance. Built for you.
       </div>
       <div className="footer__phone-wrap">
-        <a href="tel:+16477089050" className="footer__phone">
-          +1 (647)708-9050
+        <a href="tel:6477089050" className="footer__phone">
+          +1 (647) 708-9050
         </a>
       </div>
       <div className="footer__copyright">
