@@ -1,5 +1,4 @@
-// src/pages/ContactPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import logoImg from '../assets/images/logo.png';
 import './ContactPage.css';
@@ -32,6 +31,11 @@ export default function ContactPage() {
   const [errors, setErrors]       = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess]       = useState(false);
+
+  // 👇 Auto-scroll to top when success message shows
+  useEffect(() => {
+    if (success) window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [success]);
 
   const serviceOptions = [
     "Headlight Restoration",
