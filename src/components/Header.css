@@ -18,24 +18,37 @@
   padding: 0.65rem 1.2rem;
 }
 
-/* Brand */
+/* Brand - NO background, NO shadow */
 .header__brand {
   display: flex;
   align-items: center;
   text-decoration: none;
   gap: 0.72rem;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
-/* BIGGER LOGO */
+/* BIGGER LOGO - Gold Circle Border, Glow on Hover */
 .header__logo {
   width: 96px;
   height: 96px;
   object-fit: contain;
   border-radius: 50%;
-  transition: transform 0.2s;
+  background: none !important;
+  box-shadow: none !important;
+  border: 3.5px solid #ffe082;
+  transition: 
+    transform 0.2s,
+    border-color 0.18s,
+    box-shadow 0.23s;
+  background-clip: padding-box;
 }
 .header__logo:hover {
   transform: scale(1.08) rotate(-1deg);
+  border-color: #fff2c7;
+  box-shadow: 0 0 26px 6px #ffe082cc, 0 2px 22px #23273533;
+  /* Soft, gold glow */
 }
 
 /* Brand text */
@@ -43,6 +56,9 @@
   display: flex;
   flex-direction: column;
   line-height: 0.92;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 .header__brand-main {
   font-family: 'Playfair Display', serif;
@@ -51,6 +67,7 @@
   color: #ffe082;
   letter-spacing: 0.02em;
   text-shadow: 0 2px 12px #181b2025;
+  background: none !important;
 }
 .header__brand-dot {
   font-family: 'Playfair Display', serif;
@@ -61,6 +78,7 @@
   margin-top: -0.18em;
   opacity: 0.97;
   text-shadow: 0 1px 9px #181b2020;
+  background: none !important;
 }
 
 /* Desktop nav links (default: show, but overridden by media queries below) */
@@ -123,15 +141,24 @@
   top: 100%;
   right: 1.2rem;
   background: #181b20;
-  border: 1px solid #23242b;
-  border-radius: 9px;
-  padding: 0.8rem;
-  box-shadow: 0 8px 32px #13162444;
+  border: 2.5px solid #ffe082;
+  border-radius: 13px;
+  padding: 0.39rem 0.44rem 0.39rem 0.44rem;
+  box-shadow: 0 8px 32px #13162444, 0 1.5px 10px #ffe08224;
+  min-width: 166px;
 }
 .header__nav.is-open .header__link {
-  margin: 0.3rem 0;
-  box-shadow: 0 2px 8px #0005;
+  margin: 0.15rem 0;
+  padding: 0.32rem 0.98rem;
+  font-size: 0.98rem;
+  border-radius: 10px;
+  box-shadow: none;
   text-align: center;
+  background: #232735;
+}
+.header__nav.is-open .header__link.active {
+  background: #232735;
+  color: #ffe082;
 }
 
 /* RESPONSIVE: COLLAPSE NAV TO HAMBURGER BELOW 1200px */
