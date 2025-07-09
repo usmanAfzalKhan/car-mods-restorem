@@ -10,6 +10,17 @@ export default function FaqPage() {
   return (
     <section className="faq-page">
       <h2 className="faq-title">Frequently Asked Questions</h2>
+      <p
+        style={{
+          textAlign: "center",
+          maxWidth: 540,
+          margin: "1.2em auto 1.3em auto",
+          fontSize: "1.08em",
+          color: "#e3dfd2",
+        }}
+      >
+        These answers reflect real experience and professional insight, thoughtfully shared by the expert who guides our team.
+      </p>
       <div className="faq-list">
         {faqs.map((faq, i) => (
           <div key={i} className={`faq-item${open === i ? " open" : ""}`}>

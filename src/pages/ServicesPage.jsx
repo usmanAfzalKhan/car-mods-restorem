@@ -6,6 +6,17 @@ import './ServicesPage.css';
 export default function ServicesPage() {
   return (
     <div className="services-page">
+      <p
+        style={{
+          textAlign: "center",
+          maxWidth: 540,
+          margin: "0 auto 1.3em auto",
+          fontSize: "1.08em",
+          color: "#e3dfd2",
+        }}
+      >
+        We’re dedicated to delivering exceptional results. Explore a selection of our most popular services, trusted by clients who value quality and care.
+      </p>
       <h1 className="services-title">Our Services</h1>
       <div className="services-flex-outer">
         <div className="services-flex">

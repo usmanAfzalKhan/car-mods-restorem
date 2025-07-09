@@ -91,6 +91,17 @@ export default function ReviewsPage() {
 
   return (
     <div className="reviews-page">
+      <p
+        style={{
+          textAlign: "center",
+          maxWidth: 540,
+          margin: "0 auto 1.3em auto",
+          fontSize: "1.08em",
+          color: "#e3dfd2",
+        }}
+      >
+        We take pride in our work, but don’t just take our word for it. Here’s what real customers say about their experience with us—genuine, honest, and unfiltered.
+      </p>
       <h1 className="reviews-title">What Our Customers Say</h1>
 
       <div className="reviews-grid">

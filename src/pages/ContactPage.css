@@ -183,3 +183,14 @@
     gap: 0.2rem 0;
   }
 }
+
+.gold-link {
+  color: #ffe082;
+  text-decoration: none;
+  font-weight: 600;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 2px;
+  cursor: pointer;
+}

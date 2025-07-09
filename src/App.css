@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
-html, body, #root {
+/* Smooth Fade-in on first load for #root */
+#root {
+  opacity: 0;
+  animation: fadeInPage 2.3s cubic-bezier(.45,.03,.41,.9) forwards;
+}
+
+/* (Keep body background for blobs and base color) */
+body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -8,6 +15,11 @@ html, body, #root {
   background: #191c1f;
   color: #f7f7f7;
   box-sizing: border-box;
+}
+
+/* Keyframes for smooth fade */
+@keyframes fadeInPage {
+  to { opacity: 1; }
 }
 
 /* Headings: clear, simple */
@@ -153,4 +165,34 @@ footer {
   border-radius: 12px;
   z-index: 99;
   padding: 1.3em 1.1em;
+}
+
+/* --- SUBTLE BLURRED BLOBS ANIMATION (background, does not affect anything else) --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.19;
+  background:
+    radial-gradient(ellipse 40% 38% at 18% 32%, #7f60ff 30%, transparent 100%),
+    radial-gradient(ellipse 33% 36% at 76% 72%, #fd8a5e 26%, transparent 100%);
+  filter: blur(38px);
+  animation: blobsMove 15s ease-in-out infinite alternate;
+}
+
+@keyframes blobsMove {
+  0%   { background-position: 18% 32%, 76% 72%; }
+  42%  { background-position: 25% 40%, 72% 68%; }
+  70%  { background-position: 12% 45%, 82% 83%; }
+  100% { background-position: 23% 18%, 62% 92%; }
+}
+
+/* Ensures the background always stays below everything */
+html, body, #root {
+  position: relative;
+  z-index: 0;
+  background: #191c1f;
+  overflow-x: hidden;
 }
