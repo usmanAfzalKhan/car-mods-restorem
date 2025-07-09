@@ -1,19 +1,37 @@
+// src/pages/ContactPage.jsx
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import logoImg from '../assets/images/logo.png';
 import './ContactPage.css';
 
+const idToLabel = {
+  'headlight-restoration': 'Headlight Restoration',
+  'android-stereos':       'Android Stereos',
+  'parking-sensors':       'Parking Sensors',
+  'blindspot-monitor':     'Blindspot Monitor',
+  'led-lighting':          'LED Lighting',
+  'ambient-lighting':      'Ambient Lighting',
+  'underglow':             'Underglow',
+  'backup-camera':         'Back Up Camera',
+};
+
 export default function ContactPage() {
+  const { search } = useLocation();
+  const params     = new URLSearchParams(search);
+  const preId      = params.get('service');
+  const preLabel   = idToLabel[preId];
+
   const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    date: '',
-    services: [],
+    name:         '',
+    phone:        '',
+    date:         '',
+    services:     preLabel ? [preLabel] : [],
     otherService: '',
-    message: ''
+    message:      ''
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors]       = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess]       = useState(false);
 
   const serviceOptions = [
     "Headlight Restoration",

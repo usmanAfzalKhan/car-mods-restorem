@@ -1,3 +1,4 @@
+// src/pages/ServiceDetailPage.jsx
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { services } from "../data/services";
@@ -53,7 +54,12 @@ export default function ServiceDetailPage() {
             <div className="price-desc highlight-price">
               Starting from{renderPrice(service.price)}
             </div>
-            <button className="book-button">Book Now</button>
+            <button
+              className="book-button"
+              onClick={() => navigate(`/contact?service=${service.id}`)}
+            >
+              Book Now
+            </button>
           </div>
         </div>
 
