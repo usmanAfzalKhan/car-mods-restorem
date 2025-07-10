@@ -126,13 +126,13 @@ export default function ContactPage() {
     <div className="contact-page">
       <div className="contact-intro">
         You can also reach us on{" "}
-        <a href="https://instagram.com" className="gold-link" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/restor.em/?fbclid=IwY2xjawLcQEZleHRuA2FlbQIxMABicmlkETB4cEc0QWNTcEdwMlhmMHBIAR646vhNuw4Uw6SlQt_E9XaxkNssPHc7LHIqKmZQVBim9ta6o51pbPYA3jcShw_aem_WIwXopRkUf6072HQ3kHd_Q#" className="gold-link" target="_blank" rel="noopener noreferrer">
           Instagram
         </a>,{" "}
-        <a href="https://facebook.com" className="gold-link" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.facebook.com/people/Restorem/61577987351506/?sk=about" className="gold-link" target="_blank" rel="noopener noreferrer">
           Facebook
         </a>, or{" "}
-        <a href="https://tiktok.com" className="gold-link" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.tiktok.com/@restor.emauto?fbclid=IwY2xjawLcQINleHRuA2FlbQIxMABicmlkETB4cEc0QWNTcEdwMlhmMHBIAR5V8V5DwL-yX2KMHFQLov4vsTIB9X7HxaFFrOTuLs97mf83GfvKEkokFvfP4Q_aem_Ltdd37XC4QbRsNjSVYIYUQ" className="gold-link" target="_blank" rel="noopener noreferrer">
           TikTok
         </a>{" "}
         for the latest updates and direct messaging. Prefer to call? Contact us at{" "}
